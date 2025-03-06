@@ -174,23 +174,23 @@ html.Div(id='references', children=[
     html.Ul([
         html.Li([
             "BEIR VII Report (Biological Effects of Ionizing Radiation): ",
-            html.A("Read here", href="https://nap.nationalacademies.org/resource/11340/beir_vii_final.pdf", target="_blank")
+            html.A("Learn more", href="https://nap.nationalacademies.org/resource/11340/beir_vii_final.pdf", target="_blank")
         ]),
         html.Li([
             "Health Physics Society Fact Sheets: ",
-            html.A("Visit here", href="https://hps.org/hpspublications/radiationfactsheets.html", target="_blank")
+            html.A("Learn more", href="https://hps.org/hpspublications/radiationfactsheets.html", target="_blank")
         ]),
         html.Li([
             "International Commission on Radiological Protection (ICRP): ",
-            html.A("Explore here", href="https://www.icrp.org/page.asp?id=5", target="_blank")
+            html.A("Learn more", href="https://www.icrp.org/page.asp?id=5", target="_blank")
         ]),
         html.Li([
             "National Council on Radiation Protection and Measurements (NCRP): ",
-            html.A("More info", href="https://ncrponline.org/", target="_blank")
+            html.A("Learn more", href="https://ncrponline.org/", target="_blank")
         ]),
         html.Li([
             "Centers for Disease Control and Prevention (CDC) - Radiation Information: ",
-            html.A("Check here", href="https://www.cdc.gov/", target="_blank")
+            html.A("Learn more", href="https://www.cdc.gov/", target="_blank")
         ]),
         html.Li([
             "U.S. Nuclear Regulatory Commission (NRC): ",
@@ -198,7 +198,7 @@ html.Div(id='references', children=[
         ]),
         html.Li([
             "National Institutes of Health (NIH): ",
-            html.A("Official website", href="https://www.nih.gov/", target="_blank")
+            html.A("Learn more", href="https://www.nih.gov/", target="_blank")
         ]),
     ]),
 ]),
