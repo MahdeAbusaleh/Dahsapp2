@@ -103,69 +103,69 @@ dcc.Markdown("""
         html.Div(id='total-dose-output', style={'fontSize': 20, 'marginTop': 20}),
     ]),
 
-  # FAQ Section
+# FAQ Section
 html.Div(id='faq', children=[
     html.H3("Frequently Asked Questions (FAQ)"),
-    
+
     html.Details([
-        html.Summary("What is a millisievert (mSv)?"),
-        html.P("A millisievert (mSv) is a unit used to measure radiation dose and assess potential health risks from exposure.")
-    ]),
-    
-    html.Details([
-        html.Summary("Is background radiation harmful?"),
-        html.P("Background radiation is naturally occurring and typically not harmful at normal exposure levels. "
-               "It comes from sources like cosmic rays and the Earth's crust.")
-    ]),
-    
-    html.Details([
-        html.Summary("What is the LNT model?"),
-        html.P("The Linear No-Threshold (LNT) model assumes that all radiation exposure, no matter how small, "
-               "increases the risk of cancer and other health effects.")
+        html.Summary("What are Sv and mSv?"),
+        html.P("Sv = Sievert, which is 1 Joule per kilogram. This is the international unit for dose equivalent. "
+               "mSv = millisievert, which is 1/1000 of a Sv.")
     ]),
 
     html.Details([
-        html.Summary("How much radiation is considered dangerous?"),
-        html.P("Acute exposure above 1,000 mSv (1 Sv) can cause radiation sickness, while prolonged exposure "
-               "above 100 mSv may increase cancer risk. However, small doses from medical imaging or flights "
-               "are generally not dangerous.")
+        html.Summary("What is background radiation? Is it harmful to me?"),
+        html.P("Background radiation is natural radiation always present in the environment. "
+               "It includes cosmic radiation (from the sun and stars), terrestrial radiation (from the Earth), "
+               "and internal radiation (from all living things). Background radiation is NOT harmful at normal exposure levels.")
     ]),
 
     html.Details([
-        html.Summary("Does flying frequently increase radiation exposure?"),
-        html.P("Yes, but the exposure is minimal. A round-trip flight from NYC to LA results in about 0.08 mSv of exposure, "
-               "which is much lower than an annual background dose (3 mSv).")
+        html.Summary("How does radiation affect air travel?"),
+        html.P("Radiation from flying is due to cosmic radiation. A flight from the East Coast to the West Coast "
+               "results in about 0.035 mSv of exposure. Higher altitudes, longer flight durations, and flights "
+               "closer to the poles result in more exposure. However, overall, air travel results in very low radiation levels.")
     ]),
 
     html.Details([
         html.Summary("Is radiation from medical imaging safe?"),
-        html.P("Medical imaging, such as X-rays and CT scans, involves low radiation doses that are carefully controlled. "
-               "The benefits usually outweigh the risks when performed by medical professionals.")
+        html.P("Medical imaging, such as CT scans and X-rays, delivers ionizing radiation to a specific part of the body "
+               "to visualize internal structures. Though these involve low radiation doses, the benefits generally outweigh "
+               "the risks. Below 10 mSv (relevant to medical imaging), there is no data supporting an increase in cancer risk.")
     ]),
 
     html.Details([
         html.Summary("What is the difference between ionizing and non-ionizing radiation?"),
-        html.P("Ionizing radiation (e.g., X-rays, gamma rays) can remove electrons from atoms, potentially causing damage to cells. "
-               "Non-ionizing radiation (e.g., radio waves, microwaves) does not have enough energy to ionize atoms and is generally safer.")
+        html.P("Ionizing radiation (e.g., alpha & beta particles, gamma rays, X-rays, neutrons) can ionize atoms and potentially "
+               "damage cells. Non-ionizing radiation (e.g., radio waves, microwaves, visible/infrared/UV light) does not have enough "
+               "energy to ionize atoms and is generally considered safer.")
     ]),
 
     html.Details([
         html.Summary("What is radiation hormesis?"),
-        html.P("Radiation hormesis is the hypothesis that low levels of radiation exposure may have beneficial effects, "
-               "such as stimulating cellular repair mechanisms. This idea is debated and not widely accepted in radiation safety.")
-    ]),
-
-    html.Details([
-        html.Summary("Where can I find reliable information on radiation?"),
-        html.P("Reliable sources include the Health Physics Society, International Commission on Radiological Protection (ICRP), "
-               "National Council on Radiation Protection and Measurements (NCRP), and BEIR VII reports.")
+        html.P("Radiation hormesis is the hypothesis that low doses of ionizing radiation may have beneficial effects, such as "
+               "stimulating immune responses and increasing mean lifespan. This remains a debated topic in radiation safety.")
     ]),
 
     html.Details([
         html.Summary("Does radiation exposure always cause cancer?"),
-        html.P("Not necessarily. While high doses of radiation can increase cancer risk, small doses from background radiation, "
-               "medical imaging, or air travel are unlikely to cause harm.")
+        html.P("No. While high doses of radiation may increase cancer risk, public health data does not show increased cancer occurrence "
+               "at low radiation doses and low dose rates.")
     ]),
+
+    html.Details([
+        html.Summary("Where can I find reliable information on radiation?"),
+        html.P("Reliable sources include:"),
+        html.Ul([
+            html.Li("Health Physics Society"),
+            html.Li("International Commission on Radiological Protection (ICRP)"),
+            html.Li("National Council on Radiation Protection and Measurements (NCRP)"),
+            html.Li("BEIR VII Reports"),
+            html.Li("National Institutes of Health (NIH)"),
+            html.Li("United States Nuclear Regulatory Commission (U.S. NRC)"),
+            html.Li("Centers for Disease Control and Prevention (CDC)")
+        ])
+    ])
 ]),
 
 # References Section
@@ -220,9 +220,10 @@ html.Div(id='video', children=[
     # Conclusion Section
     html.Div(id='conclusion', children=[
         html.H3("Conclusion"),
-        html.P("This interactive app highlights the complexity of understanding radiation exposure and risk. "
-               "By comparing different models and exploring common sources of radiation, users can make informed "
-               "decisions and better understand radiation safety."),
+        html.P("Understanding radiation exposure and risk is important in making informed decisions about health and safety. While radiation often has a bad stigma attached to it, as being associated with danger, it is also an essential part of modern life, from medical diagnostics to energy production. By breaking down exposure sources, dose response models, and personal risk factors, this website aims to provide clarity on this complex subject, helping users navigate the balance between precaution and practicality.
+Different models of radiation risk such as the Linear No-Threshold (LNT), Threshold and Hormesis reflect the ongoing debate among scientists and regulators. The LNT model assumes all exposure carries some risk, while the Threshold model suggests a safe limit, and the Hormesis model argues that low doses may even be beneficial. These perspectives influence safety standards and policies, affecting everything from occupational exposure limits to space exploration guidelines. By understanding these models, individuals can make informed decisions regarding radiation related risks and make informed choices based on scientific evidence rather than fear.
+In conclusion, radiation is a part of everyday life, and complete avoidance is neither necessary nor possible. Instead, the key is risk awareness and responsible decision making. Whether considering medical procedures, occupational hazards, or lifestyle choices, having a solid understanding of radiation principles allows individuals to take the correct precautions without unnecessary anxiety. This site serves as a foundation for further exploration and encourages users to continue learning about radiation safety from reliable sources.
+."),
     ]),
 ])
 
