@@ -43,21 +43,6 @@ app.layout = html.Div([
         html.A('Conclusion', href='#conclusion', style={'cursor': 'pointer', 'textDecoration': 'none'})
     ], style={'textAlign': 'center', 'marginBottom': 20}),
 
-    # JavaScript for smooth scrolling
-    dcc.Markdown("""
-        <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href').substring(1);
-                    document.getElementById(targetId).scrollIntoView({ behavior: 'smooth' });
-                });
-            });
-        });
-        </script>
-    """, dangerously_allow_html=True),
-
     # Radiation Exposure Section
     html.Div(id='exposure', children=[
         html.H3("Radiation Exposure from Common Sources"),
@@ -89,28 +74,66 @@ app.layout = html.Div([
         ),
     ]),
 
+    # Calculator Section
+    html.Div(id='calculator', children=[
+        html.H3("Personal Radiation Exposure Calculator"),
+        html.Label("Number of flights per year (NYC to LA equivalent):"),
+        dcc.Slider(0, 50, 1, value=5, marks={i: str(i) for i in range(0, 51, 10)}, id='flight-slider'),
+        html.Label("Number of chest X-rays per year:"),
+        dcc.Slider(0, 10, 1, value=1, marks={i: str(i) for i in range(0, 11)}, id='xray-slider'),
+        html.Div(id='total-dose-output', style={'fontSize': 20, 'marginTop': 20}),
+    ]),
+
+    # FAQ Section
+    html.Div(id='faq', children=[
+        html.H3("Frequently Asked Questions (FAQ)"),
+        html.Details([
+            html.Summary("What are Sv and mSv?"),
+            html.P("Sv = Sievert, which is 1 Joule per kilogram. This is the international unit for dose equivalent. "
+                   "mSv = millisievert, which is 1/1000 of a Sv.")
+        ]),
+        html.Details([
+            html.Summary("What is background radiation?"),
+            html.P("Background radiation is natural radiation present in the environment, originating from cosmic rays, the Earth's crust, and internal sources.")
+        ]),
+        html.Details([
+            html.Summary("How does radiation affect air travel?"),
+            html.P("Radiation exposure increases slightly at higher altitudes. A typical flight from NYC to LA results in approximately 0.04 mSv exposure.")
+        ]),
+        html.Details([
+            html.Summary("Is radiation from medical imaging safe?"),
+            html.P("Medical imaging uses ionizing radiation to diagnose conditions. At low doses, the benefits outweigh the risks.")
+        ]),
+        html.Details([
+            html.Summary("What is the difference between ionizing and non-ionizing radiation?"),
+            html.P("Ionizing radiation (X-rays, gamma rays) can remove electrons from atoms, potentially causing harm. Non-ionizing radiation (radio waves, microwaves) lacks this ability and is generally safer.")
+        ]),
+    ]),
+
     # Conclusion Section
     html.Div(id='conclusion', children=[
         html.H3("Conclusion"),
         html.P("""
-            Understanding radiation exposure and risk is important in making informed decisions about health and safety. 
-            While radiation often has a bad stigma attached to it, it is an essential part of modern life, 
-            from medical diagnostics to energy production. By breaking down exposure sources, dose-response models, and personal risk factors, 
-            this website aims to provide clarity on this complex subject.
+            Understanding radiation exposure and risk is important for making informed decisions about health and safety. 
+            This website provides insight into different radiation exposure models, helping individuals evaluate risks 
+            associated with medical procedures, air travel, and environmental radiation.
 
-            Different models of radiation risk, such as the Linear No-Threshold (LNT), Threshold, and Hormesis, reflect the ongoing debate 
-            among scientists and regulators. The LNT model assumes all exposure carries some risk, while the Threshold model suggests 
-            a safe limit, and the Hormesis model argues that low doses may even be beneficial. These perspectives influence safety 
-            standards and policies.
+            Radiation exposure is a part of modern life. While excessive exposure can be harmful, scientific models suggest that 
+            small doses may not be as dangerous as commonly believed. By presenting different perspectives—including the 
+            LNT, Threshold, and Hormesis models—this website offers a balanced view of radiation safety.
 
-            In conclusion, radiation is a part of everyday life, and complete avoidance is neither necessary nor possible. 
-            Instead, the key is risk awareness and responsible decision-making. This site serves as a foundation for further exploration 
-            and encourages users to continue learning about radiation safety from reliable sources.
+            We encourage visitors to explore reliable resources, stay informed, and adopt a data-driven approach when evaluating radiation risks.
         """),
     ]),
+
+    # Callback for radiation dose calculator
+    html.Div([
+        html.Label("Estimated Annual Radiation Dose:"),
+        html.Div(id="total-dose-output", style={'fontSize': 20, 'marginTop': 20})
+    ])
 ])
 
-# Callback for radiation dose calculator
+# Callback for calculator
 @app.callback(
     dash.Output("total-dose-output", "children"),
     [dash.Input("flight-slider", "value"), dash.Input("xray-slider", "value")]
