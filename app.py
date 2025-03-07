@@ -31,7 +31,7 @@ hormesis_risk = np.piecewise(dose_values, [dose_values < 10, dose_values >= 10],
 # Layout for the app
 app.layout = html.Div([
     html.H1("Understanding Radiation Exposure and Risk", style={'textAlign': 'center'}),
-    html.H5("Created by Mahde Abusaleh", style={'textAlign': 'center', 'marginBottom': 20, 'color': 'gray'}),
+    html.H5("Created by Low Dose Radiation Explanation 1 Group 2025", style={'textAlign': 'center', 'marginBottom': 20, 'color': 'gray'}),
 
 # Navigation Bar (Updated to use html.A() for smooth scrolling)
 html.Div([
