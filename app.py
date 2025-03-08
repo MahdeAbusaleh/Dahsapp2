@@ -90,29 +90,59 @@ app.layout = html.Div([
         html.Div(id='total-dose-output', style={'fontSize': 20, 'marginTop': 20}),
     ]),
 
-    # FAQ Section (Fully preserved)
-    html.Div(id='faq', children=[
-        html.H3("Frequently Asked Questions (FAQ)"),
-        html.Details([
-            html.Summary("What is a millisievert (mSv)?"),
-            html.P("A millisievert (mSv) is a unit used to measure radiation dose and assess potential health risks from exposure.")
-        ]),
-        html.Details([
-            html.Summary("What is radiation hormesis?"),
-            html.P("Radiation hormesis is the hypothesis that low levels of radiation exposure may have beneficial effects, "
-                   "such as stimulating cellular repair mechanisms.")
-        ])
+# FAQ Section
+html.Div(id='faq', children=[
+    html.H3("Frequently Asked Questions (FAQ)"),
+
+    html.Details([
+        html.Summary("What is radiation?"),
+        html.P("Radiation is energy that travels through space in the form of waves or particles. It can be classified as ionizing or non-ionizing, depending on its ability to remove electrons from atoms.")
     ]),
 
-    # References Section
-    html.Div(id='references', children=[
-        html.H3("References"),
-        html.Ul([
-            html.Li(html.A("BEIR VII Report", href="https://nap.nationalacademies.org/resource/11340/beir_vii_final.pdf", target="_blank")),
-            html.Li(html.A("Health Physics Society", href="https://hps.org/hpspublications/radiationfactsheets.html", target="_blank")),
-            html.Li(html.A("National Institutes of Health (NIH)", href="https://www.nih.gov/", target="_blank")),
-        ]),
+    html.Details([
+        html.Summary("What are the types of radiation?"),
+        html.P("Radiation is categorized into two types: ionizing radiation, which has enough energy to ionize atoms (e.g., X-rays, gamma rays, alpha and beta particles), and non-ionizing radiation, which does not (e.g., radio waves, microwaves, visible light).")
     ]),
+
+    html.Details([
+        html.Summary("Where does radiation come from?"),
+        html.P("Radiation comes from both natural and man-made sources. Natural sources include cosmic rays, radon gas, and radioactive elements in the earth. Man-made sources include medical imaging, nuclear power plants, and industrial applications.")
+    ]),
+
+    html.Details([
+        html.Summary("What is background radiation?"),
+        html.P("Background radiation refers to the natural radiation present in the environment. It comes from cosmic rays, the earth’s crust, and even food we consume. It is generally low and not harmful to humans.")
+    ]),
+
+    html.Details([
+        html.Summary("What is the difference between ionizing and non-ionizing radiation?"),
+        html.P("Ionizing radiation has enough energy to remove electrons from atoms, potentially causing biological damage. Examples include X-rays and gamma rays. Non-ionizing radiation lacks sufficient energy to ionize atoms and includes radio waves and visible light.")
+    ]),
+
+    html.Details([
+        html.Summary("What are the effects of radiation exposure on the human body?"),
+        html.P("The effects of radiation exposure depend on the dose and duration. High doses can cause radiation sickness, while lower doses over time may increase the risk of cancer. Low doses, such as those from background radiation or medical imaging, generally have minimal effects.")
+    ]),
+
+    html.Details([
+        html.Summary("How is radiation exposure measured?"),
+        html.P("Radiation exposure is measured in units such as Sieverts (Sv) or millisieverts (mSv). These units quantify the biological effect of radiation on human tissue, taking into account the type and energy of radiation.")
+    ]),
+]),
+
+# References Section
+html.Div(id='references', children=[
+    html.H3("References"),
+    html.Ul([
+        html.Li(html.A("Health Physics Society", href="https://hps.org/hpspublications/radiationfactsheets.html", target="_blank")),
+        html.Li(html.A("International Commission on Radiological Protection (ICRP)", href="https://www.icrp.org/page.asp?id=5", target="_blank")),
+        html.Li(html.A("National Council on Radiation Protection and Measurements (NCRP)", href="https://ncrponline.org/", target="_blank")),
+        html.Li(html.A("BEIR VII Reports", href="https://nap.nationalacademies.org/resource/11340/beir_vii_final.pdf", target="_blank")),
+        html.Li(html.A("National Institutes of Health (NIH)", href="https://www.nih.gov/", target="_blank")),
+        html.Li(html.A("United States Nuclear Regulatory Commission (U.S. NRC)", href="https://www.nrc.gov/", target="_blank")),
+        html.Li(html.A("Centers for Disease Control and Prevention (CDC)", href="https://www.cdc.gov/", target="_blank")),
+    ]),
+]),
 
     # Video Section
     html.Div(id='video', children=[
