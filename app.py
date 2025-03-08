@@ -48,13 +48,17 @@ app.layout = html.Div([
         dcc.Graph(
             figure={
                 "data": [go.Bar(x=df["Source"], y=df["Dose (mSv)"], marker_color='blue')],
-                "layout": go.Layout(title="Radiation Dose Comparison (mSv)", xaxis_title="Source",
-                                    yaxis_title="Dose (mSv)")
+                "layout": go.Layout(
+                    title="Radiation Dose Comparison (mSv)",
+                    xaxis_title="Source",
+                    yaxis_title="Dose (mSv)"
+                )
             }
         ),
-        html.P("The chart above compares radiation doses from common sources, providing insight into "
-               "relative exposure levels."),
-    ]),
+        html.P("The chart above compares radiation doses from common sources, providing insight into relative exposure levels.")
+    ]),  # ✅ Closed properly
+
+])
 
     # Dose-Response Models Section
     html.Div(id='models', children=[
