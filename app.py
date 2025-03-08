@@ -61,26 +61,27 @@ app.layout = html.Div([
 ])
 
     # Dose-Response Models Section
-    html.Div(id='models', children=[
-        html.H3("Dose-Response Models: LNT vs. Threshold vs. Hormesis"),
-        dcc.Graph(
-            figure={
-                "data": [
-                    go.Scatter(x=dose_values, y=lnt_risk, mode='lines', name='Linear No-Threshold (LNT)',
-                               line=dict(color='red')),
-                    go.Scatter(x=dose_values, y=threshold_risk, mode='lines', name='Threshold Model',
-                               line=dict(color='blue', dash='dash')),
-                    go.Scatter(x=dose_values, y=hormesis_risk, mode='lines', name='Hormesis Model',
-                               line=dict(color='green', dash='dot')),
-                ],
-                "layout": go.Layout(title="Radiation Dose-Response Models", xaxis_title="Radiation Dose (mSv)",
-                                    yaxis_title="Relative Risk")
-            }
-        ),
-        html.P("The Linear No-Threshold (LNT) model assumes all radiation exposure carries some risk, no matter how "
-               "small, while the Threshold model assumes there is a dose below which there is no risk. "
-               "The Hormesis model proposes that low levels of radiation may be beneficial."),
-    ]),
+ # Dose-Response Models Section
+html.Div(id='models', children=[
+    html.H3("Dose-Response Models: LNT vs. Threshold vs. Hormesis"),
+    dcc.Graph(
+        figure={
+            "data": [
+                go.Scatter(x=dose_values, y=lnt_risk, mode='lines', name='Linear No-Threshold (LNT)',
+                           line=dict(color='red')),
+                go.Scatter(x=dose_values, y=threshold_risk, mode='lines', name='Threshold Model',
+                           line=dict(color='blue', dash='dash')),
+                go.Scatter(x=dose_values, y=hormesis_risk, mode='lines', name='Hormesis Model',
+                           line=dict(color='green', dash='dot')),
+            ],
+            "layout": go.Layout(title="Radiation Dose-Response Models", xaxis_title="Radiation Dose (mSv)",
+                                yaxis_title="Relative Risk")
+        }
+    ),
+    html.P("The Linear No-Threshold (LNT) model assumes all radiation exposure carries some risk, no matter how "
+           "small, while the Threshold model assumes there is a dose below which there is no risk. "
+           "The Hormesis model proposes that low levels of radiation may be beneficial."),
+]),
 
     # Calculator Section
     html.Div(id='calculator', children=[
