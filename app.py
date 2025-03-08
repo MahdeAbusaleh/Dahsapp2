@@ -95,38 +95,73 @@ html.Div(id='faq', children=[
     html.H3("Frequently Asked Questions (FAQ)"),
 
     html.Details([
-        html.Summary("What is radiation?"),
-        html.P("Radiation is energy that travels through space in the form of waves or particles. It can be classified as ionizing or non-ionizing, depending on its ability to remove electrons from atoms.")
+        html.Summary("What are Sv and mSv?"),
+        html.P("Sv = Sievert, which is 1 Joule per kilogram. This is the international system unit for dose equivalent. "
+               "mSv = millisievert, which is 1/1000 of a Sv."),
+        html.P(["Source: U.S. NRC Glossary. ", 
+                html.A("Learn more", href="https://www.nrc.gov/reading-rm/basic-ref/glossary/sievert-sv.html", target="_blank")])
     ]),
 
     html.Details([
-        html.Summary("What are the types of radiation?"),
-        html.P("Radiation is categorized into two types: ionizing radiation, which has enough energy to ionize atoms (e.g., X-rays, gamma rays, alpha and beta particles), and non-ionizing radiation, which does not (e.g., radio waves, microwaves, visible light).")
+        html.Summary("What is background radiation? Is it harmful to me?"),
+        html.P("Background radiation is natural radiation that is always present and all around us in the environment. "
+               "It includes cosmic radiation (from the sun and stars), terrestrial radiation (from the Earth), "
+               "and internal radiation (from all living things)."),
+        html.P("Background radiation is NOT harmful at normal exposure levels."),
+        html.P(["Source: U.S. NRC Glossary. ", 
+                html.A("Learn more", href="https://www.nrc.gov/reading-rm/basic-ref/glossary/background-radiation.html", target="_blank")])
     ]),
 
     html.Details([
-        html.Summary("Where does radiation come from?"),
-        html.P("Radiation comes from both natural and man-made sources. Natural sources include cosmic rays, radon gas, and radioactive elements in the earth. Man-made sources include medical imaging, nuclear power plants, and industrial applications.")
+        html.Summary("How does radiation affect air travel?"),
+        html.P("Radiation from flying is due to cosmic radiation. If you were to travel from the East Coast to the West Coast, "
+               "you would receive 0.035 mSv from the flight."),
+        html.P("The longer the flight duration, the more radiation you receive."),
+        html.P("The higher the altitude, the higher the dose of radiation."),
+        html.P("The further north or south from the equator you fly, the more radiation you will receive."),
+        html.P("Overall, air travel results in very low radiation levels."),
+        html.P(["Source: CDC Facts About Radiation from Air Travel. ", 
+                html.A("Learn more", href="https://www.cdc.gov/radiation-health/data-research/facts-stats/air-travel.html", target="_blank")])
     ]),
 
     html.Details([
-        html.Summary("What is background radiation?"),
-        html.P("Background radiation refers to the natural radiation present in the environment. It comes from cosmic rays, the earth’s crust, and even food we consume. It is generally low and not harmful to humans.")
+        html.Summary("Is radiation from medical imaging safe?"),
+        html.P("Medical imaging, such as CT scans and X-rays, delivers beams in the form of ionizing radiation to a specific part of the body "
+               "to visualize internal structures."),
+        html.P("Although these involve low radiation doses, the benefits outweigh the potential risks. "
+               "These procedures are accomplished in a controlled environment by a professional."),
+        html.P("Below 10 mSv, which is a dose rate relevant to radiography, nuclear medicine, and CT scans, "
+               "there is no data to support an increase in cancer risk."),
+        html.P(["(1) Source: CDC - Radiation in Healthcare: Imaging Procedures. ",
+                html.A("Learn more", href="https://www.cdc.gov/radiation-health/features/imaging-procedures.html", target="_blank")]),
+        html.P(["(2) Source: National Library of Medicine - Radiation Risk from Medical Imaging. ",
+                html.A("Learn more", href="https://www.ncbi.nlm.nih.gov/articles/PMC2996147/#T1", target="_blank")])
     ]),
 
     html.Details([
         html.Summary("What is the difference between ionizing and non-ionizing radiation?"),
-        html.P("Ionizing radiation has enough energy to remove electrons from atoms, potentially causing biological damage. Examples include X-rays and gamma rays. Non-ionizing radiation lacks sufficient energy to ionize atoms and includes radio waves and visible light.")
+        html.P("Ionizing radiation includes alpha & beta particles, gamma rays, X-rays, neutrons, and high-speed protons. "
+               "These particles are capable of producing ions that can potentially damage cells and are considered more energetic than non-ionizing radiation."),
+        html.P("Non-ionizing radiation includes radio waves, microwaves, and visible/infrared/UV light. These do not have the ability to produce ions."),
+        html.P(["Source: U.S. NRC Glossary. ", 
+                html.A("Learn more", href="https://www.nrc.gov/reading-rm/basic-ref/glossary/ionizing-radiation.html", target="_blank")])
     ]),
 
     html.Details([
-        html.Summary("What are the effects of radiation exposure on the human body?"),
-        html.P("The effects of radiation exposure depend on the dose and duration. High doses can cause radiation sickness, while lower doses over time may increase the risk of cancer. Low doses, such as those from background radiation or medical imaging, generally have minimal effects.")
+        html.Summary("What is radiation hormesis?"),
+        html.P("Radiation hormesis is the hypothesis that low doses of ionizing radiation may be beneficial by stimulating physiological performance, "
+               "immune competence, and overall health. Although this is a controversial topic in health physics, some studies suggest "
+               "that small doses of radiation may increase lifespan."),
+        html.P(["Source: Luckey TD. Radiation Hormesis Study. ", 
+                html.A("Learn more", href="https://doi.org/10.2203/dose-response.06-102.Luckey", target="_blank")])
     ]),
 
     html.Details([
-        html.Summary("How is radiation exposure measured?"),
-        html.P("Radiation exposure is measured in units such as Sieverts (Sv) or millisieverts (mSv). These units quantify the biological effect of radiation on human tissue, taking into account the type and energy of radiation.")
+        html.Summary("Does radiation exposure always cause cancer?"),
+        html.P("No. While high doses and dose rates may cause cancer, there is no public health data that shows an increased occurrence of cancer "
+               "due to low radiation doses and low dose rates."),
+        html.P(["Source: U.S. NRC - Radiation Exposure and Cancer. ", 
+                html.A("Learn more", href="https://www.nrc.gov/about-nrc/radiation/health-effects/rad-exposure-cancer.html", target="_blank")])
     ]),
 ]),
 
