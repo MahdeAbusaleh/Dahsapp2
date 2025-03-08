@@ -21,15 +21,12 @@ radiation_sources = {
 
 df = pd.DataFrame(list(radiation_sources.items()), columns=["Source", "Dose (mSv)"])
 
-# LNT vs. Threshold vs. Hormesis Models
+# LNT Model (only)
 dose_values = np.linspace(0, 100, 100)
 lnt_risk = dose_values * 0.01
-threshold_risk = np.piecewise(dose_values, [dose_values < 10, dose_values >= 10], [0, lambda x: (x - 10) * 0.01])
-hormesis_risk = np.piecewise(dose_values, [dose_values < 10, dose_values >= 10],
-                             [lambda x: -0.005 * x + 0.05, lambda x: (x - 10) * 0.01])
 
 # Layout for the app
-app.layout = html.Div([  # ✅ This is properly opened
+app.layout = html.Div([  # ✅ Everything stays inside this layout
     html.H1("Understanding Radiation Exposure and Risk", style={'textAlign': 'center'}),
     html.H5("Created by Mahde Abusaleh", style={'textAlign': 'center', 'marginBottom': 20, 'color': 'gray'}),
 
@@ -56,47 +53,45 @@ app.layout = html.Div([  # ✅ This is properly opened
             }
         ),
         html.P("The chart above compares radiation doses from common sources, providing insight into relative exposure levels.")
-    ])  # ✅ Properly closed
-])  # ✅ Closing `])` added to end of layout
+    ]),
 
+    # Dose-Response Models Section (Only LNT)
+    html.Div(id='models', children=[
+        html.H3("Radiation Dose-Response Model: LNT"),
+        dcc.Graph(
+            figure={
+                "data": [
+                    go.Scatter(
+                        x=dose_values, y=lnt_risk, mode='lines', name='Linear No-Threshold (LNT)',
+                        line=dict(color='red')
+                    ),
+                ],
+                "layout": go.Layout(
+                    title="Radiation Dose-Response Model",
+                    xaxis=dict(title="Radiation Dose (mSv)"),  # Keep x-axis numbers
+                    yaxis=dict(title="Relative Risk"),  # Keep y-axis numbers
+                    showlegend=False  # Remove legend since only LNT is displayed
+                )
+            }
+        ),
+        html.P("The Linear No-Threshold (LNT) model assumes all radiation exposure carries some risk, "
+               "no matter how small.")
+    ]),
 
- # Dose-Response Models Section
-html.Div(id='models', children=[
-    html.H3("Radiation Dose-Response Model: LNT"),
-    dcc.Graph(
-        figure={
-            "data": [
-                go.Scatter(
-                    x=dose_values, y=lnt_risk, mode='lines', name='Linear No-Threshold (LNT)',
-                    line=dict(color='red')
-                ),
-            ],
-            "layout": go.Layout(
-                title="Radiation Dose-Response Model",
-                xaxis=dict(title="Radiation Dose (mSv)"),  # Keep x-axis numbers
-                yaxis=dict(title="Relative Risk"),  # Keep y-axis numbers
-                showlegend=False  # Remove legend since only LNT is displayed
-            )
-        }
-    ),
-    html.P("The Linear No-Threshold (LNT) model assumes all radiation exposure carries some risk, "
-           "no matter how small."),
-]),
+    # Calculator Section
+    html.Div(id='calculator', children=[
+        html.H3("Personal Radiation Exposure Calculator"),
 
-# Calculator Section
-html.Div(id='calculator', children=[
-    html.H3("Personal Radiation Exposure Calculator"),
-    
-    html.Label("Number of flights per year (NYC to LA equivalent):"),
-    dcc.Slider(0, 50, 1, value=5, marks={i: str(i) for i in range(0, 51, 10)}, id='flight-slider'),
-    
-    html.Label("Number of chest X-rays per year:"),
-    dcc.Slider(0, 10, 1, value=1, marks={i: str(i) for i in range(0, 11)}, id='xray-slider'),
-    
-    html.Div(id='total-dose-output', style={'fontSize': 20, 'marginTop': 20})
-]),  # ✅ Properly closed
+        html.Label("Number of flights per year (NYC to LA equivalent):"),
+        dcc.Slider(0, 50, 1, value=5, marks={i: str(i) for i in range(0, 51, 10)}, id='flight-slider'),
 
-# FAQ Section
+        html.Label("Number of chest X-rays per year:"),
+        dcc.Slider(0, 10, 1, value=1, marks={i: str(i) for i in range(0, 11)}, id='xray-slider'),
+
+        html.Div(id='total-dose-output', style={'fontSize': 20, 'marginTop': 20})
+    ]),
+
+    # FAQ Section
 html.Div(id='faq', children=[
     html.H3("Frequently Asked Questions (FAQ)"),
 
@@ -185,19 +180,32 @@ html.Div(id='references', children=[
     ]),
 ]),
 
-# Video Section
-html.Div(id='video', children=[
-    html.H3("Radiation Exposure Explained - Video Resource"),
-    html.Iframe(
-        src="https://www.youtube.com/embed/uzqsnxZBLNE",
-        width="700",
-        height="400",
-        style={"border": "none", "display": "block", "margin": "auto"}
-    )
-]),  # ✅ Make sure this closing bracket aligns with `html.Div()`
 
+    # References Section
+    html.Div(id='references', children=[
+        html.H3("References"),
+        html.Ul([
+            html.Li(html.A("Health Physics Society", href="https://hps.org/hpspublications/radiationfactsheets.html", target="_blank")),
+            html.Li(html.A("International Commission on Radiological Protection (ICRP)", href="https://www.icrp.org/page.asp?id=5", target="_blank")),
+            html.Li(html.A("National Council on Radiation Protection and Measurements (NCRP)", href="https://ncrponline.org/", target="_blank")),
+            html.Li(html.A("BEIR VII Reports", href="https://nap.nationalacademies.org/resource/11340/beir_vii_final.pdf", target="_blank")),
+            html.Li(html.A("National Institutes of Health (NIH)", href="https://www.nih.gov/", target="_blank")),
+            html.Li(html.A("United States Nuclear Regulatory Commission (U.S. NRC)", href="https://www.nrc.gov/", target="_blank")),
+            html.Li(html.A("Centers for Disease Control and Prevention (CDC)", href="https://www.cdc.gov/", target="_blank")),
+        ])
+    ]),
 
-# Conclusion Section
+    # Video Section
+    html.Div(id='video', children=[
+        html.H3("Radiation Exposure Explained - Video Resource"),
+        html.Iframe(
+            src="https://www.youtube.com/embed/uzqsnxZBLNE",
+            width="700",
+            height="400",
+            style={"border": "none", "display": "block", "margin": "auto"}
+        )
+    ])
+])
 
 # Callback for radiation dose calculator
 @app.callback(
@@ -212,3 +220,4 @@ if __name__ == "__main__":
     import os
     port = int(os.environ.get("PORT", 8050))
     app.run_server(debug=True, host="0.0.0.0", port=port)
+
