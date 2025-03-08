@@ -185,16 +185,17 @@ html.Div(id='references', children=[
     ]),
 ]),
 
-    # Video Section
-    html.Div(id='video', children=[
-        html.H3("Radiation Exposure Explained - Video Resource"),
-        html.Iframe(
-            src="https://www.youtube.com/embed/uzqsnxZBLNE",
-            width="700",
-            height="400",
-            style={"border": "none", "display": "block", "margin": "auto"}
-        ),
-    ]),
+# Video Section
+html.Div(id='video', children=[
+    html.H3("Radiation Exposure Explained - Video Resource"),
+    html.Iframe(
+        src="https://www.youtube.com/embed/uzqsnxZBLNE",
+        width="700",
+        height="400",
+        style={"border": "none", "display": "block", "margin": "auto"}
+    )
+]),  # ✅ Make sure this closing bracket aligns with `html.Div()`
+
 
 # Conclusion Section
 html.Div(id='conclusion', children=[
