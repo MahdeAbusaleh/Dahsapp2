@@ -180,32 +180,6 @@ html.Div(id='references', children=[
     ]),
 ]),
 
-
-    # References Section
-    html.Div(id='references', children=[
-        html.H3("References"),
-        html.Ul([
-            html.Li(html.A("Health Physics Society", href="https://hps.org/hpspublications/radiationfactsheets.html", target="_blank")),
-            html.Li(html.A("International Commission on Radiological Protection (ICRP)", href="https://www.icrp.org/page.asp?id=5", target="_blank")),
-            html.Li(html.A("National Council on Radiation Protection and Measurements (NCRP)", href="https://ncrponline.org/", target="_blank")),
-            html.Li(html.A("BEIR VII Reports", href="https://nap.nationalacademies.org/resource/11340/beir_vii_final.pdf", target="_blank")),
-            html.Li(html.A("National Institutes of Health (NIH)", href="https://www.nih.gov/", target="_blank")),
-            html.Li(html.A("United States Nuclear Regulatory Commission (U.S. NRC)", href="https://www.nrc.gov/", target="_blank")),
-            html.Li(html.A("Centers for Disease Control and Prevention (CDC)", href="https://www.cdc.gov/", target="_blank")),
-        ])
-    ]),
-
-    # Video Section
-    html.Div(id='video', children=[
-        html.H3("Radiation Exposure Explained - Video Resource"),
-        html.Iframe(
-            src="https://www.youtube.com/embed/uzqsnxZBLNE",
-            width="700",
-            height="400",
-            style={"border": "none", "display": "block", "margin": "auto"}
-        )
-    ])
-])
 # Conclusion Section
 html.Div(id='conclusion', children=[
     html.H3("Conclusion"),
@@ -230,6 +204,19 @@ html.Div(id='conclusion', children=[
         users to continue learning about radiation safety from reliable sources.
     """)
 ]),
+    
+    # Video Section
+    html.Div(id='video', children=[
+        html.H3("Radiation Exposure Explained - Video Resource"),
+        html.Iframe(
+            src="https://www.youtube.com/embed/uzqsnxZBLNE",
+            width="700",
+            height="400",
+            style={"border": "none", "display": "block", "margin": "auto"}
+        )
+    ])
+])
+
 # Callback for radiation dose calculator
 @app.callback(
     dash.Output("total-dose-output", "children"),
