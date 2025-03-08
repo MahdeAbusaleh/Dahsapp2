@@ -29,7 +29,7 @@ hormesis_risk = np.piecewise(dose_values, [dose_values < 10, dose_values >= 10],
                              [lambda x: -0.005 * x + 0.05, lambda x: (x - 10) * 0.01])
 
 # Layout for the app
-app.layout = html.Div([
+app.layout = html.Div([  # ✅ This is properly opened
     html.H1("Understanding Radiation Exposure and Risk", style={'textAlign': 'center'}),
     html.H5("Created by Mahde Abusaleh", style={'textAlign': 'center', 'marginBottom': 20, 'color': 'gray'}),
 
@@ -50,13 +50,15 @@ app.layout = html.Div([
                 "data": [go.Bar(x=df["Source"], y=df["Dose (mSv)"], marker_color='blue')],
                 "layout": go.Layout(
                     title="Radiation Dose Comparison (mSv)",
-                    xaxis_title="Source",
-                    yaxis_title="Dose (mSv)"
+                    xaxis=dict(title="Source"),
+                    yaxis=dict(title="Dose (mSv)")
                 )
             }
         ),
         html.P("The chart above compares radiation doses from common sources, providing insight into relative exposure levels.")
-    ]),
+    ])  # ✅ Properly closed
+])  # ✅ Closing `])` added to end of layout
+
 
  # Dose-Response Models Section
 html.Div(id='models', children=[
