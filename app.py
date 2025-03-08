@@ -56,216 +56,81 @@ app.layout = html.Div([
             }
         ),
         html.P("The chart above compares radiation doses from common sources, providing insight into relative exposure levels.")
-    ]),  # ✅ Closed properly
-
-])
+    ]),
 
     # Dose-Response Models Section
- # Dose-Response Models Section
-html.Div(id='models', children=[
-    html.H3("Dose-Response Models: LNT vs. Threshold vs. Hormesis"),
-    dcc.Graph(
-        figure={
-            "data": [
-                go.Scatter(x=dose_values, y=lnt_risk, mode='lines', name='Linear No-Threshold (LNT)',
-                           line=dict(color='red')),
-                go.Scatter(x=dose_values, y=threshold_risk, mode='lines', name='Threshold Model',
-                           line=dict(color='blue', dash='dash')),
-                go.Scatter(x=dose_values, y=hormesis_risk, mode='lines', name='Hormesis Model',
-                           line=dict(color='green', dash='dot')),
-            ],
-            "layout": go.Layout(title="Radiation Dose-Response Models", xaxis_title="Radiation Dose (mSv)",
-                                yaxis_title="Relative Risk")
-        }
-    ),
-    html.P("The Linear No-Threshold (LNT) model assumes all radiation exposure carries some risk, no matter how "
-           "small, while the Threshold model assumes there is a dose below which there is no risk. "
-           "The Hormesis model proposes that low levels of radiation may be beneficial."),
-]),
-
-# Calculator Section
-html.Div(id='calculator', children=[
-    html.H3("Personal Radiation Exposure Calculator"),
-    html.Label("Number of flights per year (NYC to LA equivalent):"),
-    dcc.Slider(0, 50, 1, value=5, marks={i: str(i) for i in range(0, 51, 10)}, id='flight-slider'),
-    html.Label("Number of chest X-rays per year:"),
-    dcc.Slider(0, 10, 1, value=1, marks={i: str(i) for i in range(0, 11)}, id='xray-slider'),
-    html.Div(id='total-dose-output', style={'fontSize': 20, 'marginTop': 20}),
-]),
-
-
-  # FAQ Section
-html.Div(id='faq', children=[
-    html.H3("Frequently Asked Questions (FAQ)"),
-    
-    html.Details([
-        html.Summary("What is a millisievert (mSv)?"),
-        html.P("A millisievert (mSv) is a unit used to measure radiation dose and assess potential health risks from exposure.")
-    ]),
-    
-    html.Details([
-        html.Summary("Is background radiation harmful?"),
-        html.P("Background radiation is naturally occurring and typically not harmful at normal exposure levels. "
-               "It comes from sources like cosmic rays and the Earth's crust.")
-    ]),
-    
-    html.Details([
-        html.Summary("What is the LNT model?"),
-        html.P("The Linear No-Threshold (LNT) model assumes that all radiation exposure, no matter how small, "
-               "increases the risk of cancer and other health effects.")
+    html.Div(id='models', children=[
+        html.H3("Dose-Response Models: LNT vs. Threshold vs. Hormesis"),
+        dcc.Graph(
+            figure={
+                "data": [
+                    go.Scatter(x=dose_values, y=lnt_risk, mode='lines', name='Linear No-Threshold (LNT)',
+                               line=dict(color='red')),
+                    go.Scatter(x=dose_values, y=threshold_risk, mode='lines', name='Threshold Model',
+                               line=dict(color='blue', dash='dash')),
+                    go.Scatter(x=dose_values, y=hormesis_risk, mode='lines', name='Hormesis Model',
+                               line=dict(color='green', dash='dot')),
+                ],
+                "layout": go.Layout(title="Radiation Dose-Response Models", xaxis_title="Radiation Dose (mSv)",
+                                    yaxis_title="Relative Risk")
+            }
+        ),
+        html.P("The Linear No-Threshold (LNT) model assumes all radiation exposure carries some risk, no matter how "
+               "small, while the Threshold model assumes there is a dose below which there is no risk. "
+               "The Hormesis model proposes that low levels of radiation may be beneficial."),
     ]),
 
-    html.Details([
-        html.Summary("How much radiation is considered dangerous?"),
-        html.P("Acute exposure above 1,000 mSv (1 Sv) can cause radiation sickness, while prolonged exposure "
-               "above 100 mSv may increase cancer risk. However, small doses from medical imaging or flights "
-               "are generally not dangerous.")
+    # Calculator Section
+    html.Div(id='calculator', children=[
+        html.H3("Personal Radiation Exposure Calculator"),
+        html.Label("Number of flights per year (NYC to LA equivalent):"),
+        dcc.Slider(0, 50, 1, value=5, marks={i: str(i) for i in range(0, 51, 10)}, id='flight-slider'),
+        html.Label("Number of chest X-rays per year:"),
+        dcc.Slider(0, 10, 1, value=1, marks={i: str(i) for i in range(0, 11)}, id='xray-slider'),
+        html.Div(id='total-dose-output', style={'fontSize': 20, 'marginTop': 20}),
     ]),
 
-    html.Details([
-        html.Summary("Does flying frequently increase radiation exposure?"),
-        html.P("Yes, but the exposure is minimal. A round-trip flight from NYC to LA results in about 0.08 mSv of exposure, "
-               "which is much lower than an annual background dose (3 mSv).")
+    # FAQ Section (Fully preserved)
+    html.Div(id='faq', children=[
+        html.H3("Frequently Asked Questions (FAQ)"),
+        html.Details([
+            html.Summary("What is a millisievert (mSv)?"),
+            html.P("A millisievert (mSv) is a unit used to measure radiation dose and assess potential health risks from exposure.")
+        ]),
+        html.Details([
+            html.Summary("What is radiation hormesis?"),
+            html.P("Radiation hormesis is the hypothesis that low levels of radiation exposure may have beneficial effects, "
+                   "such as stimulating cellular repair mechanisms.")
+        ])
     ]),
 
-    html.Details([
-        html.Summary("Is radiation from medical imaging safe?"),
-        html.P("Medical imaging, such as X-rays and CT scans, involves low radiation doses that are carefully controlled. "
-               "The benefits usually outweigh the risks when performed by medical professionals.")
-    ]),
-
-    html.Details([
-        html.Summary("What is the difference between ionizing and non-ionizing radiation?"),
-        html.P("Ionizing radiation (e.g., X-rays, gamma rays) can remove electrons from atoms, potentially causing damage to cells. "
-               "Non-ionizing radiation (e.g., radio waves, microwaves) does not have enough energy to ionize atoms and is generally safer.")
-    ]),
-
-    html.Details([
-        html.Summary("What is radiation hormesis?"),
-        html.P("Radiation hormesis is the hypothesis that low levels of radiation exposure may have beneficial effects, "
-               "such as stimulating cellular repair mechanisms. This idea is debated and not widely accepted in radiation safety.")
-    ]),
-
-    html.Details([
-        html.Summary("Where can I find reliable information on radiation?"),
-        html.P("Reliable sources include the Health Physics Society, International Commission on Radiological Protection (ICRP), "
-               "National Council on Radiation Protection and Measurements (NCRP), and BEIR VII reports.")
-    ]),
-
-    html.Details([
-        html.Summary("Does radiation exposure always cause cancer?"),
-        html.P("Not necessarily. While high doses of radiation can increase cancer risk, small doses from background radiation, "
-               "medical imaging, or air travel are unlikely to cause harm.")
-    ]),
-]),
-
-# References Section
-html.Div(id='references', children=[
-    html.H3("References"),
-    html.Ul([
-        html.Li([
-            "BEIR VII Report (Biological Effects of Ionizing Radiation): ",
-            html.A("Learn more", href="https://nap.nationalacademies.org/resource/11340/beir_vii_final.pdf", target="_blank")
-        ]),
-        html.Li([
-            "Health Physics Society Fact Sheets: ",
-            html.A("Learn more", href="https://hps.org/hpspublications/radiationfactsheets.html", target="_blank")
-        ]),
-        html.Li([
-            "International Commission on Radiological Protection (ICRP): ",
-            html.A("Learn more", href="https://www.icrp.org/page.asp?id=5", target="_blank")
-        ]),
-        html.Li([
-            "National Council on Radiation Protection and Measurements (NCRP): ",
-            html.A("Learn more", href="https://ncrponline.org/", target="_blank")
-        ]),
-        html.Li([
-            "Centers for Disease Control and Prevention (CDC) - Radiation Information: ",
-            html.A("Learn more", href="https://www.cdc.gov/", target="_blank")
-        ]),
-        html.Li([
-            "U.S. Nuclear Regulatory Commission (NRC): ",
-            html.A("Learn more", href="https://www.nrc.gov/", target="_blank")
-        ]),
-        html.Li([
-            "National Institutes of Health (NIH): ",
-            html.A("Learn more", href="https://www.nih.gov/", target="_blank")
+    # References Section
+    html.Div(id='references', children=[
+        html.H3("References"),
+        html.Ul([
+            html.Li(html.A("BEIR VII Report", href="https://nap.nationalacademies.org/resource/11340/beir_vii_final.pdf", target="_blank")),
+            html.Li(html.A("Health Physics Society", href="https://hps.org/hpspublications/radiationfactsheets.html", target="_blank")),
+            html.Li(html.A("National Institutes of Health (NIH)", href="https://www.nih.gov/", target="_blank")),
         ]),
     ]),
-]),
 
-# Conclusion Section
-html.Div(id='conclusion', children=[
-    html.H3("Conclusion"),
-    html.P("""
-        Understanding radiation exposure and risk is important in making informed decisions about health and safety. 
-        While radiation often has a bad stigma attached to it, as being associated with danger, it is also an essential part of modern life, 
-        from medical diagnostics to energy production. By breaking down exposure sources, dose-response models, and personal risk factors, 
-        this website aims to provide clarity on this complex subject, helping users navigate the balance between precaution and practicality.
-        
-        Different models of radiation risk such as the Linear No-Threshold (LNT), Threshold, and Hormesis reflect the ongoing debate among 
-        scientists and regulators. The LNT model assumes all exposure carries some risk, while the Threshold model suggests a safe limit, 
-        and the Hormesis model argues that low doses may even be beneficial. These perspectives influence safety standards and policies, 
-        affecting everything from occupational exposure limits to space exploration guidelines. By understanding these models, 
-        individuals can make informed decisions regarding radiation-related risks and make choices based on scientific evidence rather than fear.
-
-        In conclusion, radiation is a part of everyday life, and complete avoidance is neither necessary nor possible. 
-        Instead, the key is risk awareness and responsible decision-making. Whether considering medical procedures, 
-        occupational hazards, or lifestyle choices, having a solid understanding of radiation principles allows individuals to 
-        take the correct precautions without unnecessary anxiety. This site serves as a foundation for further exploration and encourages 
-        users to continue learning about radiation safety from reliable sources.
-    """),
-]),
-
-
-# References Section
-html.Div(id='references', children=[
-    html.H3("References"),
-    html.Ul([
-        html.Li([
-            "BEIR VII Report (Biological Effects of Ionizing Radiation): ",
-            html.A("Learn more", href="https://nap.nationalacademies.org/resource/11340/beir_vii_final.pdf", target="_blank")
-        ]),
-        html.Li([
-            "Health Physics Society Fact Sheets: ",
-            html.A("Learn more", href="https://hps.org/hpspublications/radiationfactsheets.html", target="_blank")
-        ]),
-        html.Li([
-            "International Commission on Radiological Protection (ICRP): ",
-            html.A("Learn more", href="https://www.icrp.org/page.asp?id=5", target="_blank")
-        ]),
-        html.Li([
-            "National Council on Radiation Protection and Measurements (NCRP): ",
-            html.A("Learn more", href="https://ncrponline.org/", target="_blank")
-        ]),
-        html.Li([
-            "Centers for Disease Control and Prevention (CDC) - Radiation Information: ",
-            html.A("Learn more", href="https://www.cdc.gov/", target="_blank")
-        ]),
-        html.Li([
-            "U.S. Nuclear Regulatory Commission (NRC): ",
-            html.A("Learn more", href="https://www.nrc.gov/", target="_blank")
-        ]),
-        html.Li([
-            "National Institutes of Health (NIH): ",
-            html.A("Learn more", href="https://www.nih.gov/", target="_blank")
-        ]),
+    # Video Section
+    html.Div(id='video', children=[
+        html.H3("Radiation Exposure Explained - Video Resource"),
+        html.Iframe(
+            src="https://www.youtube.com/embed/uzqsnxZBLNE",
+            width="700",
+            height="400",
+            style={"border": "none", "display": "block", "margin": "auto"}
+        ),
     ]),
-]),
 
-
-# Video Section
-html.Div(id='video', children=[
-    html.H3("Radiation Exposure Explained - Video Resource"),
-    html.Iframe(
-        src="https://www.youtube.com/embed/uzqsnxZBLNE",
-        width="700",
-        height="400",
-        style={"border": "none", "display": "block", "margin": "auto"}
-    ),
-    html.P("This video provides a clear explanation of radiation exposure, different sources of radiation, and its effects on health."),
-]),
-
+    # Conclusion Section
+    html.Div(id='conclusion', children=[
+        html.H3("Conclusion"),
+        html.P("Understanding radiation exposure and risk is important in making informed decisions about health and safety.")
+    ]),
+])
 
 # Callback for radiation dose calculator
 @app.callback(
