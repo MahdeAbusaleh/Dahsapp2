@@ -102,36 +102,38 @@ html.Div(id='introduction', children=[
         sources can accumulate and potentially affect us in different ways. We address some of those sources as well as the potential effects of such exposure.
     """)
 ]),
-        # Radiation Exposure Section
-        html.Div(id='exposure', children=[
-            html.H3("Radiation Exposure from Common Sources"),
-dcc.Graph(
-    figure={
-        "data": [
-            go.Bar(x=df["Source"], y=df["Dose (mSv)"], marker=dict(color='blue'))
-        ],
-        "layout": go.Layout(
-            title=dict(text="Radiation Dose Comparison (mSv)", font=dict(color="black")),
-            xaxis=dict(
-                title=dict(text="Source", font=dict(color="black")),
-                tickfont=dict(color="black"),
-                tickangle=-20,  # Less rotation
-                automargin=True  # Prevents clipping
-            ),
-            yaxis=dict(
-                title=dict(text="Dose (mSv)", font=dict(color="black")),
-                tickfont=dict(color="black")
-            ),
-            width=1200,  # More space for text
-            height=500,  # Adjust height to balance space
-            plot_bgcolor="rgba(255,255,255,1)",
-            paper_bgcolor="rgba(255,255,255,1)",
-            font=dict(color="black")
-        )
-    }
-),
-            html.P("The chart above compares radiation doses from common sources, providing insight into relative exposure levels.")
-        ]),
+       # Radiation Exposure Section
+html.Div(id='exposure', children=[
+    html.H3("Radiation Exposure from Common Sources"),
+    
+    dcc.Graph(
+        figure={
+            "data": [
+                go.Bar(x=df["Source"], y=df["Dose (mSv)"], marker=dict(color='blue'))
+            ],
+            "layout": go.Layout(
+                title=dict(text="Radiation Dose Comparison (mSv)", font=dict(color="black")),
+                xaxis=dict(
+                    title=dict(text="Source", font=dict(color="black")),
+                    tickfont=dict(color="black"),
+                    tickangle=-20,  # Less rotation
+                    automargin=True  # Prevents clipping
+                ),
+                yaxis=dict(
+                    title=dict(text="Dose (mSv)", font=dict(color="black")),
+                    tickfont=dict(color="black")
+                ),
+                width=1200,  # More space for text
+                height=500,  # Adjust height to balance space
+                plot_bgcolor="rgba(255,255,255,1)",
+                paper_bgcolor="rgba(255,255,255,1)",
+                font=dict(color="black")
+            )
+        }
+    ),
+    
+    html.P("The chart above compares radiation doses from common sources, providing insight into relative exposure levels.")
+])
 
         # Dose-Response Models Section (Only LNT)
         html.Div(id='models', children=[
