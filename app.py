@@ -3,7 +3,7 @@ from dash import dcc, html
 import plotly.graph_objects as go
 import pandas as pd
 import numpy as np
-from dash.dependencies import Input, Output  # Ensure dependency imports
+from dash.dependencies import Input, Output
 
 # Initialize the Dash app
 app = dash.Dash(__name__, external_stylesheets=["/assets/styles.css"])
@@ -28,13 +28,9 @@ lnt_risk = dose_values * 0.01
 
 # App layout
 app.layout = html.Div([
-    html.Div(className="stars"),
-    html.Div(className="stars2"),
-    html.Div(className="stars3"),
-
     html.Div(className="container", children=[
         html.H1("Understanding Radiation Exposure and Risk"),
-        
+
         html.Div(className="nav-links", children=[
             html.A("Exposure Sources | ", href="#exposure"),
             html.A("Dose-Response Models | ", href="#models"),
@@ -88,29 +84,27 @@ app.layout = html.Div([
         # FAQ Section
         html.Div(id='faq', children=[
             html.H3("Frequently Asked Questions (FAQ)"),
-            # Add FAQ details here...
-        ]),
-
-        # References Section
-        html.Div(id='references', children=[
-            html.H3("References"),
-            html.Ul([
-                html.Li(html.A("Health Physics Society", href="https://hps.org/hpspublications/radiationfactsheets.html", target="_blank")),
-                html.Li(html.A("International Commission on Radiological Protection (ICRP)", href="https://www.icrp.org/page.asp?id=5", target="_blank")),
-                html.Li(html.A("National Council on Radiation Protection and Measurements (NCRP)", href="https://ncrponline.org/", target="_blank")),
-                html.Li(html.A("BEIR VII Reports", href="https://nap.nationalacademies.org/resource/11340/beir_vii_final.pdf", target="_blank")),
-            ]),
+            html.Details([
+                html.Summary("What are Sv and mSv?"),
+                html.P("Sv = Sievert, which is 1 Joule per kilogram. This is the international system unit for dose equivalent. "
+                       "mSv = millisievert, which is 1/1000 of a Sv."),
+                html.P(["Source: U.S. NRC Glossary. ", 
+                        html.A("Learn more", href="https://www.nrc.gov/reading-rm/basic-ref/glossary/sievert-sv.html", target="_blank")])
+            ])
         ]),
 
         # Video Section
         html.Div(id='video', children=[
             html.H3("Radiation Exposure Explained - Video Resource"),
-            html.Iframe(src="https://www.youtube.com/embed/uzqsnxZBLNE", width="700", height="400",
-                        style={"border": "none", "display": "block", "margin": "auto"})
-        ]),
-    ])  # ✅ Closing `container` div properly
-], style={'backgroundColor': 'white', 'minHeight': '100vh', 'padding': '30px'})  # ✅ Ensure styles apply to the main `html.Div`
-
+            html.Iframe(
+                src="https://www.youtube.com/embed/uzqsnxZBLNE",
+                width="700",
+                height="400",
+                style={"border": "none", "display": "block", "margin": "auto"}
+            )
+        ])
+    ])
+], style={"backgroundColor": "white", "minHeight": "100vh", "padding": "30px"})
 
 # Callback for radiation dose calculator
 @app.callback(
