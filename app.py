@@ -236,17 +236,16 @@ html.Div(id='conclusion', children=[
     """)
 ]),
     
-    # Video Section
-    html.Div(id='video', children=[
-        html.H3("Radiation Exposure Explained - Video Resource"),
-        html.Iframe(
-            src="https://www.youtube.com/embed/uzqsnxZBLNE",
-            width="700",
-            height="400",
-            style={"border": "none", "display": "block", "margin": "auto"}
-        )
-    ])
-])
+# Video Section
+html.Div(id='video', children=[
+    html.H3("Radiation Exposure Explained - Video Resource"),
+    html.Iframe(
+        src="https://www.youtube.com/embed/uzqsnxZBLNE",
+        width="700",
+        height="400",
+        style={"border": "none", "display": "block", "margin": "auto"}
+    )
+]),
 
 # Callback for radiation dose calculator
 @app.callback(
