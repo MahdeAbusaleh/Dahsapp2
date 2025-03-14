@@ -74,24 +74,37 @@ app.layout = html.Div([
 
 ], style={'backgroundColor': 'white', 'minHeight': '100vh', 'padding': '30px'})  # ✅ Ensures full height
 
-        # Dose-Response Models Section (Only LNT)
-        html.Div(id='models', children=[
-            html.H3("Dose-Response Models: LNT"),
-            dcc.Graph(
-                figure={
-                    "data": [go.Scatter(x=dose_values, y=lnt_risk, mode='lines', name='Linear No-Threshold (LNT)', line=dict(color='red'))],
-                    "layout": go.Layout(
-                        title="Radiation Dose-Response Models",
-                        xaxis_title="Radiation Dose (mSv)",
-                        yaxis_title="Relative Risk",
-                        plot_bgcolor="white",
-                        paper_bgcolor="white",
-                        font=dict(color="black")
+    # Dose-Response Models Section (Only LNT)
+html.Div(
+    id="models",
+    children=[
+        html.H3("Dose-Response Models: LNT"),
+        dcc.Graph(
+            figure={
+                "data": [
+                    go.Scatter(
+                        x=dose_values,
+                        y=lnt_risk,
+                        mode="lines",
+                        name="Linear No-Threshold (LNT)",
+                        line=dict(color="red"),
                     )
-                }
-            ),
-            html.P("The Linear No-Threshold (LNT) model assumes all radiation exposure carries some risk, no matter how small.")
-        ]),
+                ],
+                "layout": go.Layout(
+                    title="Radiation Dose-Response Models",
+                    xaxis_title="Radiation Dose (mSv)",
+                    yaxis_title="Relative Risk",
+                    plot_bgcolor="white",
+                    paper_bgcolor="white",
+                    font=dict(color="black"),
+                ),
+            }
+        ),
+        html.P(
+            "The Linear No-Threshold (LNT) model assumes all radiation exposure carries some risk, no matter how small."
+        ),
+    ],
+),
 
         # Calculator Section
         html.Div(id='calculator', children=[
