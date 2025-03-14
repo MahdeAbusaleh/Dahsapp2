@@ -27,7 +27,7 @@ df = pd.DataFrame(list(radiation_sources.items()), columns=["Source", "Dose (mSv
 dose_values = np.linspace(0, 100, 100)
 lnt_risk = dose_values * 0.01
 
-#app layout
+# App layout
 app.layout = html.Div([
     html.Div(className="stars"),
     html.Div(className="stars2"),
@@ -35,6 +35,7 @@ app.layout = html.Div([
 
     html.Div(className="container", children=[
         html.H1("Understanding Radiation Exposure and Risk"),
+        
         html.Div(className="nav-links", children=[
             html.A("Exposure Sources | ", href="#exposure"),
             html.A("Dose-Response Models | ", href="#models"),
@@ -42,32 +43,36 @@ app.layout = html.Div([
             html.A("FAQ | ", href="#faq"),
             html.A("References | ", href="#references"),
             html.A("Conclusion", href="#conclusion")
-        ]),
-
-html.Div(id="exposure", className="graph-container", children=[
-    html.H3("Radiation Exposure from Common Sources"),
-    dcc.Graph(figure={
-        "data": [
-            go.Bar(x=["Background Radiation", "Chest X-ray", "Dental X-ray"], 
-                   y=[3.0, 0.1, 0.005], 
-                   marker=dict(color='blue'))
-        ],
-        "layout": go.Layout(
-            title=dict(text="Radiation Dose Comparison (mSv)", font=dict(color="black")),
-            xaxis=dict(
-                title=dict(text="Source", font=dict(color="black")),
-                tickfont=dict(color="black")
-            ),
-            yaxis=dict(
-                title=dict(text="Dose (mSv)", font=dict(color="black")),
-                tickfont=dict(color="black")
-            ),
-            plot_bgcolor="rgba(255,255,255,1)",
-            paper_bgcolor="rgba(255,255,255,1)",
-            font=dict(color="black")
-        )
-    })
-])
+        ]),  # ✅ Make sure this list is correctly closed
+        
+        html.Div(id="exposure", className="graph-container", children=[
+            html.H3("Radiation Exposure from Common Sources"),
+            dcc.Graph(figure={
+                "data": [
+                    go.Bar(
+                        x=["Background Radiation", "Chest X-ray", "Dental X-ray"],
+                        y=[3.0, 0.1, 0.005],
+                        marker=dict(color='blue')
+                    )
+                ],
+                "layout": go.Layout(
+                    title=dict(text="Radiation Dose Comparison (mSv)", font=dict(color="black")),
+                    xaxis=dict(
+                        title=dict(text="Source", font=dict(color="black")),
+                        tickfont=dict(color="black")
+                    ),
+                    yaxis=dict(
+                        title=dict(text="Dose (mSv)", font=dict(color="black")),
+                        tickfont=dict(color="black")
+                    ),
+                    plot_bgcolor="rgba(255,255,255,1)",
+                    paper_bgcolor="rgba(255,255,255,1)",
+                    font=dict(color="black")
+                )
+            })
+        ])
+    ])  # ✅ Closing `container` div properly
+])  # ✅ Closing `app.layout` properly
 
  # Introduction Section
 html.Div(id='introduction', children=[
