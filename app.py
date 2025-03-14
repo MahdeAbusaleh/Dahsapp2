@@ -135,33 +135,35 @@ html.Div(id='exposure', children=[
     html.P("The chart above compares radiation doses from common sources, providing insight into relative exposure levels.")
 ])
 
-        # Dose-Response Models Section (Only LNT)
-        html.Div(id='models', children=[
-            html.H3("Dose-Response Models: LNT"),
-           dcc.Graph(
-    figure={
-        "data": [
-            go.Scatter(x=dose_values, y=lnt_risk, mode='lines', name='Linear No-Threshold (LNT)', line=dict(color='red'))
-        ],
-        "layout": go.Layout(
-            title=dict(text="Radiation Dose-Response Models", font=dict(color="black")),
-            xaxis=dict(
-                title=dict(text="Radiation Dose (mSv)", font=dict(color="black")),
-                tickfont=dict(color="black")  # Numbers on X-axis
-            ),
-            yaxis=dict(
-                title=dict(text="Relative Risk", font=dict(color="black")),
-                tickfont=dict(color="black")  # Numbers on Y-axis
-            ),
-            plot_bgcolor="rgba(255,255,255,1)",  # White background
-            paper_bgcolor="rgba(255,255,255,1)", # White outer background
-            font=dict(color="black")  # Text color
-        )
-    }
-),
-            html.P("The Linear No-Threshold (LNT) model assumes all radiation exposure carries some risk, no matter how small.")
-        ]),
-        
+# Dose-Response Models Section (Only LNT)
+html.Div(id='models', children=[
+    html.H3("Dose-Response Models: LNT"),
+    
+    dcc.Graph(
+        figure={
+            "data": [
+                go.Scatter(x=dose_values, y=lnt_risk, mode='lines', 
+                           name='Linear No-Threshold (LNT)', line=dict(color='red'))
+            ],
+            "layout": go.Layout(
+                title=dict(text="Radiation Dose-Response Models", font=dict(color="black")),
+                xaxis=dict(
+                    title=dict(text="Radiation Dose (mSv)", font=dict(color="black")),
+                    tickfont=dict(color="black")  # Numbers on X-axis
+                ),
+                yaxis=dict(
+                    title=dict(text="Relative Risk", font=dict(color="black")),
+                    tickfont=dict(color="black")  # Numbers on Y-axis
+                ),
+                plot_bgcolor="rgba(255,255,255,1)",  # White background
+                paper_bgcolor="rgba(255,255,255,1)",  # White outer background
+                font=dict(color="black")  # Text color
+            )
+        }
+    ),
+    
+    html.P("The Linear No-Threshold (LNT) model assumes all radiation exposure carries some risk, no matter how small.")
+])
         # Calculator Section
         html.Div(id='calculator', children=[
             html.H3("Personal Radiation Exposure Calculator"),
