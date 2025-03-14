@@ -233,8 +233,56 @@ html.Div(id='conclusion', children=[
                         style={"border": "none", "display": "block", "margin": "auto"})
         ]),
     ]),  # Closing `container`
+], 
 
-], style={'backgroundColor': 'white', 'minHeight': '100vh', 'padding': '30px'})  # Apply styles here
+# App layout
+app.layout = html.Div([
+    html.Div(className="stars"),
+    html.Div(className="stars2"),
+    html.Div(className="stars3"),
+
+    html.Div(className="container", children=[
+        html.H1("Understanding Radiation Exposure and Risk"),
+        
+        html.Div(className="nav-links", children=[
+            html.A("Exposure Sources | ", href="#exposure"),
+            html.A("Dose-Response Models | ", href="#models"),
+            html.A("Calculator | ", href="#calculator"),
+            html.A("FAQ | ", href="#faq"),
+            html.A("References | ", href="#references"),
+            html.A("Conclusion", href="#conclusion")
+        ]),  # ✅ Correctly closed list
+
+        html.Div(id="exposure", className="graph-container", children=[
+            html.H3("Radiation Exposure from Common Sources"),
+            dcc.Graph(figure={
+                "data": [
+                    go.Bar(
+                        x=["Background Radiation", "Chest X-ray", "Dental X-ray"],
+                        y=[3.0, 0.1, 0.005],
+                        marker=dict(color='blue')
+                    )
+                ],
+                "layout": go.Layout(
+                    title=dict(text="Radiation Dose Comparison (mSv)", font=dict(color="black")),
+                    xaxis=dict(
+                        title=dict(text="Source", font=dict(color="black")),
+                        tickfont=dict(color="black")
+                    ),
+                    yaxis=dict(
+                        title=dict(text="Dose (mSv)", font=dict(color="black")),
+                        tickfont=dict(color="black")
+                    ),
+                    plot_bgcolor="rgba(255,255,255,1)",
+                    paper_bgcolor="rgba(255,255,255,1)",
+                    font=dict(color="black")
+                )
+            })
+        ])  # ✅ Closing the `exposure` div properly
+    ])  # ✅ Closing `container` div properly
+], style={'backgroundColor': 'white', 'minHeight': '100vh', 'padding': '30px'})  # ✅ Ensure styles apply to the main `html.Div`
+
+
 
 # Callback for radiation dose calculator
 @app.callback(
