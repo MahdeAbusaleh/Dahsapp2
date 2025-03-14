@@ -28,7 +28,8 @@ lnt_risk = dose_values * 0.01
 
 # Layout for the app
 app.layout = html.Div([
-    html.Div([  # Main container to center content
+    # Main Container - Fullscreen and Centered Content
+    html.Div([
         html.H1("Understanding Radiation Exposure and Risk", style={'textAlign': 'center'}),
         html.H5("Created by Low Dose Radiation Explanation Group 1 2025", 
                 style={'textAlign': 'center', 'marginBottom': 20, 'color': 'gray'}),
@@ -243,9 +244,9 @@ html.Div(id='conclusion', children=[
             )
         ]),
 
-    ], style={'maxWidth': '900px', 'margin': 'auto', 'padding': '20px', 'backgroundColor': 'rgba(255, 255, 255, 0.1)', 'borderRadius': '10px'})  
+    ], style={'width': '100%', 'padding': '40px', 'backgroundColor': 'white', 'color': 'black'})  
 
-], style={'backgroundColor': 'black', 'minHeight': '100vh', 'padding': '30px'})
+], style={'width': '100%', 'minHeight': '100vh', 'backgroundColor': 'white', 'color': 'black'})
 
 # Callback for radiation dose calculator
 @app.callback(
