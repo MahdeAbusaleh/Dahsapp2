@@ -294,18 +294,18 @@ html.Div(id='conclusion', children=[
         users to continue learning about radiation safety from reliable sources.
     """)
 ]),
-        # Video Section
-        html.Div(id='video', children=[
-            html.H3("Radiation Exposure Explained - Video Resource"),
-            html.Iframe(
-                src="https://www.youtube.com/embed/uzqsnxZBLNE",
-                width="700",
-                height="400",
-                style={"border": "none", "display": "block", "margin": "auto"}
-            )
-        ]),
-
-    ], style={'maxWidth': '1200px', 'margin': 'auto', 'padding': '20px'}),  # ✅ Centers content
+# Video Section
+html.Div(id='video', children=[
+    html.H3("Radiation Exposure Explained - Video Resource"),
+    html.Iframe(
+        src="https://www.youtube.com/embed/uzqsnxZBLNE",
+        width="700",
+        height="400",
+        style={"border": "none", "display": "block", "margin": "auto"}
+    )
+]),
+# Ensure correct indentation here:
+html.Div(style={'maxWidth': '1200px', 'margin': 'auto', 'padding': '20px'}),  # ✅ Centers content
 
 ], style={'backgroundColor': 'white', 'minHeight': '100vh', 'padding': '30px'})  # ✅ Ensures full height
 
