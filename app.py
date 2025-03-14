@@ -83,16 +83,19 @@ dcc.Graph(
             title=dict(text="Radiation Dose Comparison (mSv)", font=dict(color="black")),
             xaxis=dict(
                 title=dict(text="Source", font=dict(color="black")),
-                tickfont=dict(color="black"),  # Ensures x-axis numbers are visible
-                tickangle=-30  # Rotates the labels slightly for better visibility
+                tickfont=dict(color="black"),
+                tickangle=-20,  # Less rotation
+                automargin=True  # Prevents clipping
             ),
             yaxis=dict(
                 title=dict(text="Dose (mSv)", font=dict(color="black")),
-                tickfont=dict(color="black")  # Ensures y-axis numbers are visible
+                tickfont=dict(color="black")
             ),
-            plot_bgcolor="rgba(255,255,255,1)",  # White background
-            paper_bgcolor="rgba(255,255,255,1)", # White outer background
-            font=dict(color="black")  # Global text color
+            width=1200,  # More space for text
+            height=500,  # Adjust height to balance space
+            plot_bgcolor="rgba(255,255,255,1)",
+            paper_bgcolor="rgba(255,255,255,1)",
+            font=dict(color="black")
         )
     }
 ),
