@@ -53,7 +53,7 @@ app.layout = html.Div(
         ], style={'textAlign': 'center', 'marginBottom': 20}),
 
 # Introduction Section
-html.Div(id='introduction', children=[
+html.Div(id="introduction", children=[
     html.H3("Introduction"),
     html.P("""
         Radiation – the word sounds scary. But what is it really? Would it surprise you to know that you experience radiation every day? 
@@ -79,7 +79,7 @@ html.Div(id='introduction', children=[
         For the most part, even the ionizing radiation we experience on a daily basis is harmless. However, long-term exposure to these low dose 
         sources can accumulate and potentially affect us in different ways. We address some of those sources as well as the potential effects of such exposure.
     """)
-])  # ✅ This ensures the Introduction section is properly closed
+])  # ✅ Ensuring correct indentation and closing brackets
 
 
         # Radiation Exposure Section
