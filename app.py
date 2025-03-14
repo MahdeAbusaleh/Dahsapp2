@@ -243,14 +243,6 @@ html.Div(id='conclusion', children=[
         users to continue learning about radiation safety from reliable sources.
     """)
 ]),
-        # Video Section
-        html.Div(id='video', children=[
-            html.H3("Radiation Exposure Explained - Video Resource"),
-            html.Iframe(src="https://www.youtube.com/embed/uzqsnxZBLNE", width="700", height="400",
-                        style={"border": "none", "display": "block", "margin": "auto"})
-        ]),
-    ]),  # Closing container
-], 
 
 # Video Section
 html.Div(
