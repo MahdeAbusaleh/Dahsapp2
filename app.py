@@ -6,7 +6,6 @@ import numpy as np
 from dash.dependencies import Input, Output  # Ensure dependency imports
 
 # Initialize the Dash app
-app = dash.Dash(__name__)
 app = dash.Dash(__name__, external_stylesheets=["/assets/styles.css"])
 
 # Radiation exposure data (in millisieverts, mSv)
@@ -43,36 +42,7 @@ app.layout = html.Div([
             html.A("FAQ | ", href="#faq"),
             html.A("References | ", href="#references"),
             html.A("Conclusion", href="#conclusion")
-        ]),  # ✅ Make sure this list is correctly closed
-        
-        html.Div(id="exposure", className="graph-container", children=[
-            html.H3("Radiation Exposure from Common Sources"),
-            dcc.Graph(figure={
-                "data": [
-                    go.Bar(
-                        x=["Background Radiation", "Chest X-ray", "Dental X-ray"],
-                        y=[3.0, 0.1, 0.005],
-                        marker=dict(color='blue')
-                    )
-                ],
-                "layout": go.Layout(
-                    title=dict(text="Radiation Dose Comparison (mSv)", font=dict(color="black")),
-                    xaxis=dict(
-                        title=dict(text="Source", font=dict(color="black")),
-                        tickfont=dict(color="black")
-                    ),
-                    yaxis=dict(
-                        title=dict(text="Dose (mSv)", font=dict(color="black")),
-                        tickfont=dict(color="black")
-                    ),
-                    plot_bgcolor="rgba(255,255,255,1)",
-                    paper_bgcolor="rgba(255,255,255,1)",
-                    font=dict(color="black")
-                )
-            })
-        ])
-    ])  # ✅ Closing `container` div properly
-])  # ✅ Closing `app.layout` properly
+        ]),
 
  # Introduction Section
 html.Div(id='introduction', children=[
@@ -102,84 +72,46 @@ html.Div(id='introduction', children=[
         sources can accumulate and potentially affect us in different ways. We address some of those sources as well as the potential effects of such exposure.
     """)
 ]),
-       # Radiation Exposure Section
-html.Div(id='exposure', children=[
-    html.H3("Radiation Exposure from Common Sources"),
-    
-    dcc.Graph(
-        figure={
-            "data": [
-                go.Bar(x=df["Source"], y=df["Dose (mSv)"], marker=dict(color='blue'))
-            ],
-            "layout": go.Layout(
-                title=dict(text="Radiation Dose Comparison (mSv)", font=dict(color="black")),
-                xaxis=dict(
-                    title=dict(text="Source", font=dict(color="black")),
-                    tickfont=dict(color="black"),
-                    tickangle=-20,  # Less rotation
-                    automargin=True  # Prevents clipping
-                ),
-                yaxis=dict(
-                    title=dict(text="Dose (mSv)", font=dict(color="black")),
-                    tickfont=dict(color="black")
-                ),
-                width=1200,  # More space for text
-                height=500,  # Adjust height to balance space
-                plot_bgcolor="rgba(255,255,255,1)",
-                paper_bgcolor="rgba(255,255,255,1)",
-                font=dict(color="black")
-            )
-        }
-    ),
-    
-    html.P("The chart above compares radiation doses from common sources, providing insight into relative exposure levels.")
-])
+        # Radiation Exposure Section
+        html.Div(id="exposure", className="graph-container", children=[
+            html.H3("Radiation Exposure from Common Sources"),
+            dcc.Graph(figure={
+                "data": [go.Bar(x=df["Source"], y=df["Dose (mSv)"], marker=dict(color='blue'))],
+                "layout": go.Layout(
+                    title=dict(text="Radiation Dose Comparison (mSv)", font=dict(color="black")),
+                    xaxis=dict(title=dict(text="Source", font=dict(color="black")), tickfont=dict(color="black"), tickangle=-20, automargin=True),
+                    yaxis=dict(title=dict(text="Dose (mSv)", font=dict(color="black")), tickfont=dict(color="black")),
+                    width=1200, height=500,
+                    plot_bgcolor="rgba(255,255,255,1)", paper_bgcolor="rgba(255,255,255,1)", font=dict(color="black")
+                )
+            }),
+            html.P("The chart above compares radiation doses from common sources, providing insight into relative exposure levels.")
+        ]),
 
-# Dose-Response Models Section (Only LNT)
-html.Div(id='models', children=[
-    html.H3("Dose-Response Models: LNT"),
-    
-    dcc.Graph(
-        figure={
-            "data": [
-                go.Scatter(x=dose_values, y=lnt_risk, mode='lines', 
-                           name='Linear No-Threshold (LNT)', line=dict(color='red'))
-            ],
-            "layout": go.Layout(
-                title=dict(text="Radiation Dose-Response Models", font=dict(color="black")),
-                xaxis=dict(
-                    title=dict(text="Radiation Dose (mSv)", font=dict(color="black")),
-                    tickfont=dict(color="black")  # Numbers on X-axis
-                ),
-                yaxis=dict(
-                    title=dict(text="Relative Risk", font=dict(color="black")),
-                    tickfont=dict(color="black")  # Numbers on Y-axis
-                ),
-                plot_bgcolor="rgba(255,255,255,1)",  # White background
-                paper_bgcolor="rgba(255,255,255,1)",  # White outer background
-                font=dict(color="black")  # Text color
-            )
-        }
-    ),
-    
-    html.P("The Linear No-Threshold (LNT) model assumes all radiation exposure carries some risk, no matter how small.")
-])
-# Calculator Section
-html.Div(id='calculator', children=[
-    html.H3("Personal Radiation Exposure Calculator"),
-    
-    html.Label("Number of flights per year (NYC to LA equivalent):"),
-    dcc.Slider(0, 50, 1, value=5, 
-               marks={i: str(i) for i in range(0, 51, 10)}, 
-               id='flight-slider'),
+        # Dose-Response Models Section
+        html.Div(id='models', children=[
+            html.H3("Dose-Response Models: LNT"),
+            dcc.Graph(figure={
+                "data": [go.Scatter(x=dose_values, y=lnt_risk, mode='lines', name='Linear No-Threshold (LNT)', line=dict(color='red'))],
+                "layout": go.Layout(
+                    title=dict(text="Radiation Dose-Response Models", font=dict(color="black")),
+                    xaxis=dict(title=dict(text="Radiation Dose (mSv)", font=dict(color="black")), tickfont=dict(color="black")),
+                    yaxis=dict(title=dict(text="Relative Risk", font=dict(color="black")), tickfont=dict(color="black")),
+                    plot_bgcolor="rgba(255,255,255,1)", paper_bgcolor="rgba(255,255,255,1)", font=dict(color="black")
+                )
+            }),
+            html.P("The Linear No-Threshold (LNT) model assumes all radiation exposure carries some risk, no matter how small.")
+        ]),
 
-    html.Label("Number of chest X-rays per year:"),
-    dcc.Slider(0, 10, 1, value=1, 
-               marks={i: str(i) for i in range(0, 11)}, 
-               id='xray-slider'),
-
-    html.Div(id='total-dose-output', style={'fontSize': 20, 'marginTop': 20})
-])
+        # Calculator Section
+        html.Div(id='calculator', children=[
+            html.H3("Personal Radiation Exposure Calculator"),
+            html.Label("Number of flights per year (NYC to LA equivalent):"),
+            dcc.Slider(0, 50, 1, value=5, marks={i: str(i) for i in range(0, 51, 10)}, id='flight-slider'),
+            html.Label("Number of chest X-rays per year:"),
+            dcc.Slider(0, 10, 1, value=1, marks={i: str(i) for i in range(0, 11)}, id='xray-slider'),
+            html.Div(id='total-dose-output', style={'fontSize': 20, 'marginTop': 20}),
+        ]),
 
  # FAQ Section
 html.Div(id='faq', children=[
@@ -294,21 +226,15 @@ html.Div(id='conclusion', children=[
         users to continue learning about radiation safety from reliable sources.
     """)
 ]),
-# Video Section
-html.Div(id='video', children=[
-    html.H3("Radiation Exposure Explained - Video Resource"),
-    html.Iframe(
-        src="https://www.youtube.com/embed/uzqsnxZBLNE",
-        width="700",
-        height="400",
-        style={"border": "none", "display": "block", "margin": "auto"}
-    )
-]),
+        # Video Section
+        html.Div(id='video', children=[
+            html.H3("Radiation Exposure Explained - Video Resource"),
+            html.Iframe(src="https://www.youtube.com/embed/uzqsnxZBLNE", width="700", height="400",
+                        style={"border": "none", "display": "block", "margin": "auto"})
+        ]),
+    ]),  # Closing `container`
 
-###
-app.layout = html.Div([
-    html.Div(style={'maxWidth': '1200px', 'margin': 'auto', 'padding': '20px'}),  # ✅ Centers content
-], style={'backgroundColor': 'white', 'minHeight': '100vh', 'padding': '30px'})  # ✅ Ensures full height
+], style={'backgroundColor': 'white', 'minHeight': '100vh', 'padding': '30px'})  # Apply styles here
 
 # Callback for radiation dose calculator
 @app.callback(
