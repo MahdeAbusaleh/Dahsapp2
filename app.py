@@ -131,16 +131,80 @@ html.Div(
         ),
     ],
 ),
-        # FAQ Section
-        html.Div(id='faq', children=[
-            html.H3("Frequently Asked Questions (FAQ)"),
-            html.Details([
-                html.Summary("What are Sv and mSv?"),
-                html.P("Sv = Sievert, which is 1 Joule per kilogram. mSv = millisievert, which is 1/1000 of a Sv."),
-                html.P(["Source: U.S. NRC Glossary. ", 
-                        html.A("Learn more", href="https://www.nrc.gov/reading-rm/basic-ref/glossary/sievert-sv.html", target="_blank")])
-            ]),
-        ]),
+# FAQ Section
+html.Div(id='faq', children=[
+    html.H3("Frequently Asked Questions (FAQ)"),
+
+    html.Details([
+        html.Summary("What are Sv and mSv?"),
+        html.P("Sv = Sievert, which is 1 Joule per kilogram. This is the international system unit for dose equivalent. "
+               "mSv = millisievert, which is 1/1000 of a Sv."),
+        html.P(["Source: U.S. NRC Glossary. ", 
+                html.A("Learn more", href="https://www.nrc.gov/reading-rm/basic-ref/glossary/sievert-sv.html", target="_blank")])
+    ]),
+
+    html.Details([
+        html.Summary("What is background radiation? Is it harmful to me?"),
+        html.P("Background radiation is natural radiation that is always present and all around us in the environment. "
+               "It includes cosmic radiation (from the sun and stars), terrestrial radiation (from the Earth), "
+               "and internal radiation (from all living things)."),
+        html.P("Background radiation is NOT harmful at normal exposure levels."),
+        html.P(["Source: U.S. NRC Glossary. ", 
+                html.A("Learn more", href="https://www.nrc.gov/reading-rm/basic-ref/glossary/background-radiation.html", target="_blank")])
+    ]),
+
+    html.Details([
+        html.Summary("How does radiation affect air travel?"),
+        html.P("Radiation from flying is due to cosmic radiation. If you were to travel from the East Coast to the West Coast, "
+               "you would receive 0.035 mSv from the flight."),
+        html.P("The longer the flight duration, the more radiation you receive."),
+        html.P("The higher the altitude, the higher the dose of radiation."),
+        html.P("The further north or south from the equator you fly, the more radiation you will receive."),
+        html.P("Overall, air travel results in very low radiation levels."),
+        html.P(["Source: CDC Facts About Radiation from Air Travel. ", 
+                html.A("Learn more", href="https://www.cdc.gov/radiation-health/data-research/facts-stats/air-travel.html", target="_blank")])
+    ]),
+
+    html.Details([
+        html.Summary("Is radiation from medical imaging safe?"),
+        html.P("Medical imaging, such as CT scans and X-rays, delivers beams in the form of ionizing radiation to a specific part of the body "
+               "to visualize internal structures."),
+        html.P("Although these involve low radiation doses, the benefits outweigh the potential risks. "
+               "These procedures are accomplished in a controlled environment by a professional."),
+        html.P("Below 10 mSv, which is a dose rate relevant to radiography, nuclear medicine, and CT scans, "
+               "there is no data to support an increase in cancer risk."),
+        html.P(["(1) Source: CDC - Radiation in Healthcare: Imaging Procedures. ",
+                html.A("Learn more", href="https://www.cdc.gov/radiation-health/features/imaging-procedures.html", target="_blank")]),
+        html.P(["(2) Source: National Library of Medicine - Radiation Risk from Medical Imaging. ",
+                html.A("Learn more", href="https://www.ncbi.nlm.nih.gov/articles/PMC2996147/#T1", target="_blank")])
+    ]),
+
+    html.Details([
+        html.Summary("What is the difference between ionizing and non-ionizing radiation?"),
+        html.P("Ionizing radiation includes alpha & beta particles, gamma rays, X-rays, neutrons, and high-speed protons. "
+               "These particles are capable of producing ions that can potentially damage cells and are considered more energetic than non-ionizing radiation."),
+        html.P("Non-ionizing radiation includes radio waves, microwaves, and visible/infrared/UV light. These do not have the ability to produce ions."),
+        html.P(["Source: U.S. NRC Glossary. ", 
+                html.A("Learn more", href="https://www.nrc.gov/reading-rm/basic-ref/glossary/ionizing-radiation.html", target="_blank")])
+    ]),
+
+    html.Details([
+        html.Summary("What is radiation hormesis?"),
+        html.P("Radiation hormesis is the hypothesis that low doses of ionizing radiation may be beneficial by stimulating physiological performance, "
+               "immune competence, and overall health. Although this is a controversial topic in health physics, some studies suggest "
+               "that small doses of radiation may increase lifespan."),
+        html.P(["Source: Luckey TD. Radiation Hormesis Study. ", 
+                html.A("Learn more", href="https://doi.org/10.2203/dose-response.06-102.Luckey", target="_blank")])
+    ]),
+
+    html.Details([
+        html.Summary("Does radiation exposure always cause cancer?"),
+        html.P("No. While high doses and dose rates may cause cancer, there is no public health data that shows an increased occurrence of cancer "
+               "due to low radiation doses and low dose rates."),
+        html.P(["Source: U.S. NRC - Radiation Exposure and Cancer. ", 
+                html.A("Learn more", href="https://www.nrc.gov/about-nrc/radiation/health-effects/rad-exposure-cancer.html", target="_blank")])
+    ])
+])  # ✅ Ensures the `faq` section is properly closed
 
         # References Section
         html.Div(id='references', children=[
