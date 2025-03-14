@@ -78,12 +78,12 @@ dcc.Graph(
             title="Radiation Dose Comparison (mSv)",
             xaxis_title="Source",
             yaxis_title="Dose (mSv)",
-            plot_bgcolor="rgba(0,0,0,0)",  # Transparent plot background
-            paper_bgcolor="rgba(0,0,0,0)",  # Transparent outer background
+            plot_bgcolor="rgba(0,0,0,0)",  # Transparent background
+            paper_bgcolor="rgba(0,0,0,0)", # Transparent outer background
             font=dict(color="white")  # White text for better visibility
         )
     }
-)
+),
         html.P("The chart above compares radiation doses from common sources, providing insight into relative exposure levels.")
     ]),
 
