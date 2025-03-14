@@ -44,11 +44,29 @@ app.layout = html.Div([
             html.A("Conclusion", href="#conclusion")
         ]),
 
-        html.Div(id="exposure", className="graph-container", children=[
-            html.H3("Radiation Exposure from Common Sources"),
-            dcc.Graph(figure={  # Your graph here })
-        ]),
-    ])
+html.Div(id="exposure", className="graph-container", children=[
+    html.H3("Radiation Exposure from Common Sources"),
+    dcc.Graph(figure={
+        "data": [
+            go.Bar(x=["Background Radiation", "Chest X-ray", "Dental X-ray"], 
+                   y=[3.0, 0.1, 0.005], 
+                   marker=dict(color='blue'))
+        ],
+        "layout": go.Layout(
+            title=dict(text="Radiation Dose Comparison (mSv)", font=dict(color="black")),
+            xaxis=dict(
+                title=dict(text="Source", font=dict(color="black")),
+                tickfont=dict(color="black")
+            ),
+            yaxis=dict(
+                title=dict(text="Dose (mSv)", font=dict(color="black")),
+                tickfont=dict(color="black")
+            ),
+            plot_bgcolor="rgba(255,255,255,1)",
+            paper_bgcolor="rgba(255,255,255,1)",
+            font=dict(color="black")
+        )
+    })
 ])
 
  # Introduction Section
