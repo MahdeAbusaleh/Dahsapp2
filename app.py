@@ -27,22 +27,29 @@ df = pd.DataFrame(list(radiation_sources.items()), columns=["Source", "Dose (mSv
 dose_values = np.linspace(0, 100, 100)
 lnt_risk = dose_values * 0.01
 
+#app layout
 app.layout = html.Div([
-    # Centering all content and setting a fixed max width
-    html.Div([
-        html.H1("Understanding Radiation Exposure and Risk", style={'textAlign': 'center'}),
-        html.H5("Created by Low Dose Radiation Explanation Group 1 2025", 
-                style={'textAlign': 'center', 'marginBottom': 20, 'color': 'gray'}),
+    html.Div(className="stars"),
+    html.Div(className="stars2"),
+    html.Div(className="stars3"),
 
-        # Navigation Bar
-        html.Div([
-            html.A('Exposure Sources | ', href='#exposure'),
-            html.A('Dose-Response Models | ', href='#models'),
-            html.A('Calculator | ', href='#calculator'),
-            html.A('FAQ | ', href='#faq'),
-            html.A('References | ', href='#references'),
-            html.A('Conclusion', href='#conclusion')
-        ], style={'textAlign': 'center', 'marginBottom': 20}),
+    html.Div(className="container", children=[
+        html.H1("Understanding Radiation Exposure and Risk"),
+        html.Div(className="nav-links", children=[
+            html.A("Exposure Sources | ", href="#exposure"),
+            html.A("Dose-Response Models | ", href="#models"),
+            html.A("Calculator | ", href="#calculator"),
+            html.A("FAQ | ", href="#faq"),
+            html.A("References | ", href="#references"),
+            html.A("Conclusion", href="#conclusion")
+        ]),
+
+        html.Div(id="exposure", className="graph-container", children=[
+            html.H3("Radiation Exposure from Common Sources"),
+            dcc.Graph(figure={  # Your graph here })
+        ]),
+    ])
+])
 
  # Introduction Section
 html.Div(id='introduction', children=[
