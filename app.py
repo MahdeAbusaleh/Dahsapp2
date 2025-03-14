@@ -87,25 +87,27 @@ dcc.Graph(
         html.P("The chart above compares radiation doses from common sources, providing insight into relative exposure levels.")
     ]),
 
-    # Dose-Response Models Section (Only LNT)
+# Dose-Response Models Section (Only LNT)
+html.Div(id='models', children=[
+    html.H3("Dose-Response Models: LNT"),
     dcc.Graph(
-    figure={
-        "data": [
-            go.Scatter(x=dose_values, y=lnt_risk, mode='lines', name='Linear No-Threshold (LNT)', line=dict(color='red'))
-        ],  # Removed Threshold & Hormesis models
-        "layout": go.Layout(
-            title="Radiation Dose-Response Models",
-            xaxis_title="Radiation Dose (mSv)",
-            yaxis_title="Relative Risk",
-            plot_bgcolor="rgba(0,0,0,0)",  # Transparent plot background
-            paper_bgcolor="rgba(0,0,0,0)",  # Transparent outer background
-            font=dict(color="white")  # White text for better visibility
-        )
-    }
-)
-        html.P("The Linear No-Threshold (LNT) model assumes all radiation exposure carries some risk, "
-               "no matter how small.")
-    ]),
+        figure={
+            "data": [
+                go.Scatter(x=dose_values, y=lnt_risk, mode='lines', name='Linear No-Threshold (LNT)', line=dict(color='red'))
+            ],
+            "layout": go.Layout(
+                title="Radiation Dose-Response Models",
+                xaxis_title="Radiation Dose (mSv)",
+                yaxis_title="Relative Risk",
+                plot_bgcolor="rgba(0,0,0,0)",  # Transparent plot background
+                paper_bgcolor="rgba(0,0,0,0)",  # Transparent outer background
+                font=dict(color="white")  # White text for better visibility
+            )
+        }
+    ),
+    html.P("The Linear No-Threshold (LNT) model assumes all radiation exposure carries some risk, no matter how small.")
+])
+
 
     # Calculator Section
     html.Div(id='calculator', children=[
