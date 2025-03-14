@@ -206,33 +206,32 @@ html.Div(id='faq', children=[
     ])
 ])  # ✅ Ensures the `faq` section is properly closed
 
-        # References Section
-        html.Div(id='references', children=[
-            html.H3("References"),
-            html.Ul([
-                html.Li(html.A("Health Physics Society", href="https://hps.org/hpspublications/radiationfactsheets.html", target="_blank")),
-                html.Li(html.A("International Commission on Radiological Protection (ICRP)", href="https://www.icrp.org/page.asp?id=5", target="_blank")),
-            ]),
-        ]),
+# References Section
+html.Div(id='references', children=[
+    html.H3("References"),
+    html.Ul([
+        html.Li(html.A("Health Physics Society", href="https://hps.org/hpspublications/radiationfactsheets.html", target="_blank")),
+        html.Li(html.A("International Commission on Radiological Protection (ICRP)", href="https://www.icrp.org/page.asp?id=5", target="_blank")),
+    ])
+]),
 
-        # Conclusion Section
-        html.Div(id='conclusion', children=[
-            html.H3("Conclusion"),
-            html.P("Understanding radiation exposure and risk is important in making informed decisions about health and safety...")
-        ]),
+# Conclusion Section
+html.Div(id='conclusion', children=[
+    html.H3("Conclusion"),
+    html.P("Understanding radiation exposure and risk is important in making informed decisions about health and safety...")
+]),
 
-        # Video Section
-        html.Div(id='video', children=[
-            html.H3("Radiation Exposure Explained - Video Resource"),
-            html.Iframe(
-                src="https://www.youtube.com/embed/uzqsnxZBLNE",
-                width="700",
-                height="400",
-                style={"border": "none", "display": "block", "margin": "auto"}
-            )
-        ]),
+# Video Section
+html.Div(id='video', children=[
+    html.H3("Radiation Exposure Explained - Video Resource"),
+    html.Iframe(
+        src="https://www.youtube.com/embed/uzqsnxZBLNE",
+        width="700",
+        height="400",
+        style={"border": "none", "display": "block", "margin": "auto"}
+    )
+]),
 
-    ], style={'width': '100%', 'padding': '40px', 'backgroundColor': 'white', 'color': 'black'})  
-
-], style={'width': '100%', 'minHeight': '100vh', 'backgroundColor': 'white', 'color': 'black'})
-
+# Main Styling for the entire page
+html.Div(style={'width': '100%', 'padding': '40px', 'backgroundColor': 'white', 'color': 'black'}),
+html.Div(style={'width': '100%', 'minHeight': '100vh', 'backgroundColor': 'white', 'color': 'black'})
