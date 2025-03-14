@@ -304,10 +304,11 @@ html.Div(id='video', children=[
         style={"border": "none", "display": "block", "margin": "auto"}
     )
 ]),
-# Ensuring correct indentation and closing brackets
-html.Div(style={'maxWidth': '1200px', 'margin': 'auto', 'padding': '20px'}),  # ✅ Centers content
 
-# Correctly close the list
+# Correctly closing the layout
+html.Div(style={'maxWidth': '1200px', 'margin': 'auto', 'padding': '20px'})  # ✅ Centers content
+
+# Closing the outermost Div properly
 ], style={'backgroundColor': 'white', 'minHeight': '100vh', 'padding': '30px'})  # ✅ Ensures full height
 
 # Callback for radiation dose calculator
