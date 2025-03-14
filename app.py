@@ -252,20 +252,19 @@ html.Div(id='conclusion', children=[
     ]),  # Closing container
 ], 
 
-        # Video Section
-        html.Div(id='video', children=[
-            html.H3("Radiation Exposure Explained - Video Resource"),
-            html.Iframe(
-                src="https://www.youtube.com/embed/uzqsnxZBLNE",
-                width="700",
-                height="400",
-                style={"border": "none", "display": "block", "margin": "auto"}
-            )
-        ])  # ✅ Correctly closed video div
-
-    ])  # ✅ Closing container div properly
-], style={'backgroundColor': 'white', 'minHeight': '100vh', 'padding': '30px'})  # ✅ Ensure styles apply to the main html.Div
-
+# Video Section
+html.Div(
+    id="video",
+    children=[
+        html.H3("Radiation Exposure Explained - Video Resource"),
+        html.Iframe(
+            src="https://www.youtube.com/embed/uzqsnxZBLNE",
+            width="700",
+            height="400",
+            style={"border": "none", "display": "block", "margin": "auto"}
+        )
+    ]
+)  # ✅ Ensure correct indentation and closing brackets
 
 # Callback for radiation dose calculator
 @app.callback(
