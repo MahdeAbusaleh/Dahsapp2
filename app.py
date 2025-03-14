@@ -115,15 +115,18 @@ app.layout = html.Div([
 ])
 
 
-    # Calculator Section
-    html.Div(id='calculator', children=[
-        html.H3("Personal Radiation Exposure Calculator"),
-        html.Label("Number of flights per year (NYC to LA equivalent):"),
-        dcc.Slider(0, 50, 1, value=5, marks={i: str(i) for i in range(0, 51, 10)}, id='flight-slider'),
-        html.Label("Number of chest X-rays per year:"),
-        dcc.Slider(0, 10, 1, value=1, marks={i: str(i) for i in range(0, 11)}, id='xray-slider'),
-        html.Div(id='total-dose-output', style={'fontSize': 20, 'marginTop': 20}),
-    ]),
+# Calculator Section
+html.Div(id='calculator', children=[
+    html.H3("Personal Radiation Exposure Calculator"),
+
+    html.Label("Number of flights per year (NYC to LA equivalent):"),
+    dcc.Slider(0, 50, 1, value=5, marks={i: str(i) for i in range(0, 51, 10)}, id='flight-slider'),
+
+    html.Label("Number of chest X-rays per year:"),
+    dcc.Slider(0, 10, 1, value=1, marks={i: str(i) for i in range(0, 11)}, id='xray-slider'),
+
+    html.Div(id='total-dose-output', style={'fontSize': 20, 'marginTop': 20})
+])  # ✅ Closing the div properly
 
  # FAQ Section
 html.Div(id='faq', children=[
