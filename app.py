@@ -3,6 +3,7 @@ from dash import dcc, html
 import plotly.graph_objects as go
 import pandas as pd
 import numpy as np
+from dash.dependencies import Input, Output
 
 # Initialize the Dash app
 app = dash.Dash(__name__)
@@ -256,6 +257,7 @@ html.Div(
     ]
 )  # ✅ Ensure correct indentation and closing brackets
 
+
 # Callback for radiation dose calculator
 @app.callback(
     Output("total-dose-output", "children"),
@@ -264,3 +266,4 @@ html.Div(
 def update_dose(flights, xrays):
     total_dose = (flights * 0.04) + (xrays * 0.1)
     return f"Your estimated annual radiation dose from selected activities: {total_dose:.2f} mSv"
+
