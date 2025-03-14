@@ -200,9 +200,9 @@ html.Div(id='faq', children=[
                "due to low radiation doses and low dose rates."),
         html.P(["Source: U.S. NRC - Radiation Exposure and Cancer. ", 
                 html.A("Learn more", href="https://www.nrc.gov/about-nrc/radiation/health-effects/rad-exposure-cancer.html", target="_blank")])
-        ])
-    ])  # ✅ This ensures the faq section is properly closed
-])
+    ])
+])  # ✅ This ensures the faq section is properly closed
+
 # References Section
 html.Div(id='references', children=[
     html.H3("References"),
