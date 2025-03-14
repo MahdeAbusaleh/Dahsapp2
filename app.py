@@ -26,9 +26,8 @@ df = pd.DataFrame(list(radiation_sources.items()), columns=["Source", "Dose (mSv
 dose_values = np.linspace(0, 100, 100)
 lnt_risk = dose_values * 0.01
 
-# Layout for the app
 app.layout = html.Div([
-    # Main Container - Fullscreen and Centered Content
+    # Centering all content and setting a fixed max width
     html.Div([
         html.H1("Understanding Radiation Exposure and Risk", style={'textAlign': 'center'}),
         html.H5("Created by Low Dose Radiation Explanation Group 1 2025", 
@@ -244,9 +243,9 @@ html.Div(id='conclusion', children=[
             )
         ]),
 
-    ], style={'width': '100%', 'padding': '40px', 'backgroundColor': 'white', 'color': 'black'})  
+    ], style={'maxWidth': '1200px', 'margin': 'auto', 'padding': '20px'}),  # ✅ Centers content
 
-], style={'width': '100%', 'minHeight': '100vh', 'backgroundColor': 'white', 'color': 'black'})
+], style={'backgroundColor': 'white', 'minHeight': '100vh', 'padding': '30px'})  # ✅ Ensures full height
 
 # Callback for radiation dose calculator
 @app.callback(
