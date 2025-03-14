@@ -21,69 +21,62 @@ radiation_sources = {
 
 df = pd.DataFrame(list(radiation_sources.items()), columns=["Source", "Dose (mSv)"])
 
-# LNT Model (only)
+# Define dose values
 dose_values = np.linspace(0, 100, 100)
+
+# LNT Model: Risk increases linearly with dose
 lnt_risk = dose_values * 0.01
 
+# Threshold Model: No risk below a certain dose, then linear increase
+threshold_dose = 10  # Assume risk starts at 10 mSv
+threshold_risk = np.where(dose_values < threshold_dose, 0, (dose_values - threshold_dose) * 0.01)
+
+# Hormesis Model: Beneficial at low doses, harmful at higher doses
+hormesis_risk = -0.005 * np.exp(-dose_values / 20) + dose_values * 0.005
 
 # Layout for the app
 app.layout = html.Div([
     html.H1("Understanding Radiation Exposure and Risk", style={'textAlign': 'center'}),
     html.H5("Created by Mahde Abusaleh", style={'textAlign': 'center', 'marginBottom': 20, 'color': 'gray'}),
 
-# Navigation Bar (Updated to use html.A() for smooth scrolling)
-html.Div([
-    html.A('Exposure Sources | ', href='#exposure', style={'cursor': 'pointer', 'textDecoration': 'none'}),
-    html.A('Dose-Response Models | ', href='#models', style={'cursor': 'pointer', 'textDecoration': 'none'}),
-    html.A('Calculator | ', href='#calculator', style={'cursor': 'pointer', 'textDecoration': 'none'}),
-    html.A('FAQ | ', href='#faq', style={'cursor': 'pointer', 'textDecoration': 'none'}),
-    html.A('Conclusion', href='#conclusion', style={'cursor': 'pointer', 'textDecoration': 'none'})
-], style={'textAlign': 'center', 'marginBottom': 20}),
+    # Navigation Bar
+    html.Div([
+        html.A('Exposure Sources | ', href='#exposure', style={'cursor': 'pointer', 'textDecoration': 'none'}),
+        html.A('Dose-Response Models | ', href='#models', style={'cursor': 'pointer', 'textDecoration': 'none'}),
+        html.A('Calculator | ', href='#calculator', style={'cursor': 'pointer', 'textDecoration': 'none'}),
+        html.A('FAQ | ', href='#faq', style={'cursor': 'pointer', 'textDecoration': 'none'}),
+        html.A('Conclusion', href='#conclusion', style={'cursor': 'pointer', 'textDecoration': 'none'})
+    ], style={'textAlign': 'center', 'marginBottom': 20}),
 
-# JavaScript for smooth scrolling
-dcc.Markdown("""
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href').substring(1);
-                document.getElementById(targetId).scrollIntoView({ behavior: 'smooth' });
-            });
-        });
-    });
-    </script>
-""", dangerously_allow_html=True),
+    # Introduction Section
+    html.Div(id='introduction', children=[
+        html.H3("Introduction"),
+        html.P("""
+            Radiation – the word sounds scary. But what is it really? Would it surprise you to know that you experience radiation every day? 
+            Radiation can be broadly defined as energy that travels in waves or particles. Radiation is typically broken down into two categories.
+        """),
+        html.P("""
+            Non-Ionizing Radiation is low energy in nature, so it is generally safe. This type of radiation shows up in your everyday life 
+            as microwaves, radio waves, and visible light.
+        """),
+        html.P("""
+            The higher energy of Ionizing Radiation allows it to kick out electrons from an atom. X-rays and gamma rays (and some UV rays) 
+            are examples of ionizing radiation. This type of radiation can be potentially harmful to a human. We experience these types of 
+            radiation usually only in special situations.
+        """),
+        html.P("""
+            We are exposed to low levels of X-rays when we have an x-ray image of our bones. CAT scans and Mammograms also use X-rays to image our bodies.
+        """),
+        html.P("""
+            We encounter Gamma Rays in small amounts if we have a PET scan or if we travel in an airplane. Solar flares also emit gamma rays that can reach the earth. 
+            Some other natural sources of gamma rays are from naturally occurring radon gas and trace amounts of uranium ore in our soil.
+        """),
+        html.P("""
+            For the most part, even the ionizing radiation we experience on a daily basis is harmless. However, long-term exposure to these low dose 
+            sources can accumulate and potentially affect us in different ways. We address some of those sources as well as the potential effects of such exposure.
+        """)
+    ]),
 
- # Introduction Section
-html.Div(id='introduction', children=[
-    html.H3("Introduction"),
-    html.P("""
-        Radiation – the word sounds scary. But what is it really? Would it surprise you to know that you experience radiation every day? 
-        Radiation can be broadly defined as energy that travels in waves or particles. Radiation is typically broken down into two categories.
-    """),
-    html.P("""
-        Non-Ionizing Radiation is low energy in nature, so it is generally safe. This type of radiation shows up in your everyday life 
-        as microwaves, radio waves, and visible light.
-    """),
-    html.P("""
-        The higher energy of Ionizing Radiation allows it to kick out electrons from an atom. X-rays and gamma rays (and some UV rays) 
-        are examples of ionizing radiation. This type of radiation can be potentially harmful to a human. We experience these types of 
-        radiation usually only in special situations.
-    """),
-    html.P("""
-        We are exposed to low levels of X-rays when we have an x-ray image of our bones. CAT scans and Mammograms also use X-rays to image our bodies.
-    """),
-    html.P("""
-        We encounter Gamma Rays in small amounts if we have a PET scan or if we travel in an airplane. Solar flares also emit gamma rays that can reach the earth. 
-        Some other natural sources of gamma rays are from naturally occurring radon gas and trace amounts of uranium ore in our soil.
-    """),
-    html.P("""
-        For the most part, even the ionizing radiation we experience on a daily basis is harmless. However, long-term exposure to these low dose 
-        sources can accumulate and potentially affect us in different ways. We address some of those sources as well as the potential effects of such exposure.
-    """)
-]),
-    
     # Radiation Exposure Section
     html.Div(id='exposure', children=[
         html.H3("Radiation Exposure from Common Sources"),
@@ -119,6 +112,8 @@ html.Div(id='introduction', children=[
                "small, while the Threshold model assumes there is a dose below which there is no risk. "
                "The Hormesis model proposes that low levels of radiation may be beneficial."),
     ]),
+])
+
 
     # Calculator Section
     html.Div(id='calculator', children=[
