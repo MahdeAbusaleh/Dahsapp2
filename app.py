@@ -75,7 +75,7 @@ app.layout = html.Div([
             For the most part, even the ionizing radiation we experience on a daily basis is harmless. However, long-term exposure to these low dose 
             sources can accumulate and potentially affect us in different ways. We address some of those sources as well as the potential effects of such exposure.
         """)
-    ]),
+]),
 
     # Radiation Exposure Section
     html.Div(id='exposure', children=[
@@ -89,7 +89,7 @@ app.layout = html.Div([
         ),
         html.P("The chart above compares radiation doses from common sources, providing insight into "
                "relative exposure levels."),
-    ]),
+]),
 
     # Dose-Response Models Section
     html.Div(id='models', children=[
