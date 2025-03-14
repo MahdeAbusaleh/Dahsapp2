@@ -7,6 +7,7 @@ from dash.dependencies import Input, Output  # Ensure dependency imports
 
 # Initialize the Dash app
 app = dash.Dash(__name__)
+app = dash.Dash(__name__, external_stylesheets=["/assets/styles.css"])
 
 # Radiation exposure data (in millisieverts, mSv)
 radiation_sources = {
