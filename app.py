@@ -181,15 +181,15 @@ html.Div(id='calculator', children=[
     html.Div(id='total-dose-output', style={'fontSize': 20, 'marginTop': 20})
 ])
 
-           # FAQ Section
-    html.Div(id='faq', children=[
-        html.H3("Frequently Asked Questions (FAQ)"),
+ # FAQ Section
+html.Div(id='faq', children=[
+    html.H3("Frequently Asked Questions (FAQ)"),
 
-        html.Details([
-          html.Summary("What are Sv and mSv?"),
-          html.P("Sv = Sievert, which is 1 Joule per kilogram. This is the international system unit for dose equivalent. "
-                  "mSv = millisievert, which is 1/1000 of a Sv."),
-          html.P(["Source: U.S. NRC Glossary. ", 
+    html.Details([
+        html.Summary("What are Sv and mSv?"),
+        html.P("Sv = Sievert, which is 1 Joule per kilogram. This is the international system unit for dose equivalent. "
+               "mSv = millisievert, which is 1/1000 of a Sv."),
+        html.P(["Source: U.S. NRC Glossary. ", 
                 html.A("Learn more", href="https://www.nrc.gov/reading-rm/basic-ref/glossary/sievert-sv.html", target="_blank")])
     ]),
 
@@ -253,8 +253,8 @@ html.Div(id='calculator', children=[
                "due to low radiation doses and low dose rates."),
         html.P(["Source: U.S. NRC - Radiation Exposure and Cancer. ", 
                 html.A("Learn more", href="https://www.nrc.gov/about-nrc/radiation/health-effects/rad-exposure-cancer.html", target="_blank")])
-    ]),
-]),
+    ])
+])
 
 # References Section
 html.Div(id='references', children=[
