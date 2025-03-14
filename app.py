@@ -119,8 +119,8 @@ html.Div(id='calculator', children=[
     html.Label("Number of chest X-rays per year:"),
     dcc.Slider(0, 10, 1, value=1, marks={i: str(i) for i in range(0, 11)}, id='xray-slider'),
 
-    html.Div(id='total-dose-output', style={'fontSize': 20, 'marginTop': 20})
-])
+    html.Div(id='total-dose-output', style={'fontSize': 20, 'marginTop': 20}),
+]),
 
     # FAQ Section
 html.Div(id='faq', children=[
@@ -247,14 +247,16 @@ html.Div(id='video', children=[
     )
 ]),
 
-# Callback for radiation dose calculator
+from dash.dependencies import Input, Output  # Ensure this is at the top
+
 @app.callback(
-    dash.Output("total-dose-output", "children"),
-    [dash.Input("flight-slider", "value"), dash.Input("xray-slider", "value")]
+    Output("total-dose-output", "children"),
+    [Input("flight-slider", "value"), Input("xray-slider", "value")]
 )
 def update_dose(flights, xrays):
     total_dose = (flights * 0.04) + (xrays * 0.1)
     return f"Your estimated annual radiation dose from selected activities: {total_dose:.2f} mSv"
+
 
 if __name__ == "__main__":
     import os
