@@ -27,84 +27,88 @@ dose_values = np.linspace(0, 100, 100)
 lnt_risk = dose_values * 0.01
 
 # App layout
-app.layout = html.Div([
-    html.Div(className="container", children=[
-        html.H1("Understanding Radiation Exposure and Risk"),
+app.layout = html.Div(style={"backgroundColor": "white", "minHeight": "100vh", "padding": "30px"}, children=[
 
-        html.Div(className="nav-links", children=[
-            html.A("Exposure Sources | ", href="#exposure"),
-            html.A("Dose-Response Models | ", href="#models"),
-            html.A("Calculator | ", href="#calculator"),
-            html.A("FAQ | ", href="#faq"),
-            html.A("References | ", href="#references"),
-            html.A("Conclusion", href="#conclusion")
-        ]),
+    html.H1("Understanding Radiation Exposure and Risk", style={"textAlign": "center"}),
 
-        # Radiation Exposure Section
-        html.Div(id="exposure", className="graph-container", children=[
-            html.H3("Radiation Exposure from Common Sources"),
-            dcc.Graph(figure={
-                "data": [go.Bar(x=df["Source"], y=df["Dose (mSv)"], marker=dict(color='blue'))],
-                "layout": go.Layout(
-                    title=dict(text="Radiation Dose Comparison (mSv)", font=dict(color="black")),
-                    xaxis=dict(title=dict(text="Source", font=dict(color="black")), tickfont=dict(color="black"), tickangle=-20, automargin=True),
-                    yaxis=dict(title=dict(text="Dose (mSv)", font=dict(color="black")), tickfont=dict(color="black")),
-                    width=1200, height=500,
-                    plot_bgcolor="rgba(255,255,255,1)", paper_bgcolor="rgba(255,255,255,1)", font=dict(color="black")
-                )
-            }),
-            html.P("The chart above compares radiation doses from common sources, providing insight into relative exposure levels.")
-        ]),
+    html.Div(className="nav-links", style={"textAlign": "center", "marginBottom": "20px"}, children=[
+        html.A("Exposure Sources | ", href="#exposure"),
+        html.A("Dose-Response Models | ", href="#models"),
+        html.A("Calculator | ", href="#calculator"),
+        html.A("FAQ | ", href="#faq"),
+        html.A("Video | ", href="#video"),
+    ]),
 
-        # Dose-Response Models Section
-        html.Div(id='models', children=[
-            html.H3("Dose-Response Models: LNT"),
-            dcc.Graph(figure={
-                "data": [go.Scatter(x=dose_values, y=lnt_risk, mode='lines', name='Linear No-Threshold (LNT)', line=dict(color='red'))],
-                "layout": go.Layout(
-                    title=dict(text="Radiation Dose-Response Models", font=dict(color="black")),
-                    xaxis=dict(title=dict(text="Radiation Dose (mSv)", font=dict(color="black")), tickfont=dict(color="black")),
-                    yaxis=dict(title=dict(text="Relative Risk", font=dict(color="black")), tickfont=dict(color="black")),
-                    plot_bgcolor="rgba(255,255,255,1)", paper_bgcolor="rgba(255,255,255,1)", font=dict(color="black")
-                )
-            }),
-            html.P("The Linear No-Threshold (LNT) model assumes all radiation exposure carries some risk, no matter how small.")
-        ]),
-
-        # Calculator Section
-        html.Div(id='calculator', children=[
-            html.H3("Personal Radiation Exposure Calculator"),
-            html.Label("Number of flights per year (NYC to LA equivalent):"),
-            dcc.Slider(0, 50, 1, value=5, marks={i: str(i) for i in range(0, 51, 10)}, id='flight-slider'),
-            html.Label("Number of chest X-rays per year:"),
-            dcc.Slider(0, 10, 1, value=1, marks={i: str(i) for i in range(0, 11)}, id='xray-slider'),
-            html.Div(id='total-dose-output', style={'fontSize': 20, 'marginTop': 20}),
-        ]),
-
-        # FAQ Section
-        html.Div(id='faq', children=[
-            html.H3("Frequently Asked Questions (FAQ)"),
-            html.Details([
-                html.Summary("What are Sv and mSv?"),
-                html.P("Sv = Sievert, which is 1 Joule per kilogram. This is the international system unit for dose equivalent. "
-                       "mSv = millisievert, which is 1/1000 of a Sv."),
-                html.P(["Source: U.S. NRC Glossary. ", 
-                        html.A("Learn more", href="https://www.nrc.gov/reading-rm/basic-ref/glossary/sievert-sv.html", target="_blank")])
-            ])
-        ]),
-
-        # Video Section
-        html.Div(id='video', children=[
-            html.H3("Radiation Exposure Explained - Video Resource"),
-            html.Iframe(
-                src="https://www.youtube.com/embed/uzqsnxZBLNE",
-                width="700",
-                height="400",
-                style={"border": "none", "display": "block", "margin": "auto"}
+    # Radiation Exposure Section
+    html.Div(id="exposure", className="graph-container", children=[
+        html.H3("Radiation Exposure from Common Sources", style={"textAlign": "center"}),
+        dcc.Graph(figure={
+            "data": [go.Bar(x=df["Source"], y=df["Dose (mSv)"], marker=dict(color='blue'))],
+            "layout": go.Layout(
+                title=dict(text="Radiation Dose Comparison (mSv)", font=dict(color="black")),
+                xaxis=dict(title=dict(text="Source", font=dict(color="black")), tickfont=dict(color="black"), tickangle=-20, automargin=True),
+                yaxis=dict(title=dict(text="Dose (mSv)", font=dict(color="black")), tickfont=dict(color="black")),
+                width=1200, height=500,
+                plot_bgcolor="rgba(255,255,255,1)", paper_bgcolor="rgba(255,255,255,1)", font=dict(color="black")
             )
+        }),
+        html.P("The chart above compares radiation doses from common sources, providing insight into relative exposure levels.", style={"textAlign": "center"})
+    ]),
+
+    # Dose-Response Models Section
+    html.Div(id='models', children=[
+        html.H3("Dose-Response Models: LNT", style={"textAlign": "center"}),
+        dcc.Graph(figure={
+            "data": [go.Scatter(x=dose_values, y=lnt_risk, mode='lines', name='Linear No-Threshold (LNT)', line=dict(color='red'))],
+            "layout": go.Layout(
+                title=dict(text="Radiation Dose-Response Models", font=dict(color="black")),
+                xaxis=dict(title=dict(text="Radiation Dose (mSv)", font=dict(color="black")), tickfont=dict(color="black")),
+                yaxis=dict(title=dict(text="Relative Risk", font=dict(color="black")), tickfont=dict(color="black")),
+                plot_bgcolor="rgba(255,255,255,1)", paper_bgcolor="rgba(255,255,255,1)", font=dict(color="black")
+            )
+        }),
+        html.P("The Linear No-Threshold (LNT) model assumes all radiation exposure carries some risk, no matter how small.", style={"textAlign": "center"})
+    ]),
+
+    # Calculator Section
+    html.Div(id='calculator', children=[
+        html.H3("Personal Radiation Exposure Calculator", style={"textAlign": "center"}),
+        html.Label("Number of flights per year (NYC to LA equivalent):"),
+        dcc.Slider(0, 50, 1, value=5, marks={i: str(i) for i in range(0, 51, 10)}, id='flight-slider'),
+        html.Label("Number of chest X-rays per year:"),
+        dcc.Slider(0, 10, 1, value=1, marks={i: str(i) for i in range(0, 11)}, id='xray-slider'),
+        html.Div(id='total-dose-output', style={'fontSize': 20, 'marginTop': 20, "textAlign": "center"}),
+    ]),
+
+    # FAQ Section
+    html.Div(id='faq', children=[
+        html.H3("Frequently Asked Questions (FAQ)", style={"textAlign": "center"}),
+
+        html.Details([
+            html.Summary("What are Sv and mSv?"),
+            html.P("Sv = Sievert, which is 1 Joule per kilogram. This is the international system unit for dose equivalent. "
+                   "mSv = millisievert, which is 1/1000 of a Sv."),
+        ]),
+
+        html.Details([
+            html.Summary("Is radiation from medical imaging safe?"),
+            html.P("Medical imaging, such as CT scans and X-rays, delivers beams in the form of ionizing radiation to a specific part of the body "
+                   "to visualize internal structures."),
+            html.P("Although these involve low radiation doses, the benefits outweigh the potential risks."),
         ])
+    ]),
+
+    # Video Section
+    html.Div(id='video', children=[
+        html.H3("Radiation Exposure Explained - Video Resource", style={"textAlign": "center"}),
+        html.Iframe(
+            src="https://www.youtube.com/embed/uzqsnxZBLNE",
+            width="700",
+            height="400",
+            style={"border": "none", "display": "block", "margin": "auto"}
+        )
     ])
-], style={"backgroundColor": "white", "minHeight": "100vh", "padding": "30px"})
+])
 
 # Callback for radiation dose calculator
 @app.callback(
