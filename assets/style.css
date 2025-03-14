@@ -1,81 +1,91 @@
-/* ✅ 1. Full-Screen Layout */
+/* === Global Styles === */
 body {
-    background-color: white;  /* Full white background */
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
+    background: black;
+    overflow: hidden;
 }
 
-/* ✅ 2. Center Content */
+/* === Starry Night Background === */
+.stars, .stars2, .stars3 {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    opacity: 0.8;
+}
+
+/* Layer 1: Small Stars */
+.stars {
+    background: url('https://i.imgur.com/hb8j06O.png'); /* Small stars */
+    animation: moveStars 60s linear infinite;
+}
+
+/* Layer 2: Medium Stars */
+.stars2 {
+    background: url('https://i.imgur.com/hb8j06O.png'); /* Medium stars */
+    animation: moveStars 100s linear infinite;
+    opacity: 0.6;
+}
+
+/* Layer 3: Big Stars */
+.stars3 {
+    background: url('https://i.imgur.com/hb8j06O.png'); /* Big stars */
+    animation: moveStars 200s linear infinite;
+    opacity: 0.4;
+}
+
+/* === Animations === */
+@keyframes moveStars {
+    from { transform: translateY(0px); }
+    to { transform: translateY(-100px); }
+}
+
+/* === Content Box === */
 .container {
-    max-width: 1200px; /* Keeps content aligned */
+    position: relative;
+    max-width: 1200px;
     margin: auto;
     padding: 20px;
+    background: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
 }
 
-/* ✅ 3. Navigation Bar */
-.navbar {
+/* === Navigation Links === */
+.nav-links {
     text-align: center;
-    padding: 10px;
-    background-color: #f4f4f4; /* Light gray */
-    border-bottom: 2px solid #ccc;
+    margin-bottom: 20px;
 }
 
-.navbar a {
+.nav-links a {
+    color: white;
     text-decoration: none;
-    color: black;
     font-weight: bold;
     margin: 0 10px;
+    transition: 0.3s;
 }
 
-.navbar a:hover {
-    color: blue;  /* Links turn blue on hover */
+.nav-links a:hover {
+    color: #ffcc00;
 }
 
-/* ✅ 4. Improve Graph Backgrounds */
-.js-plotly-plot .plotly {
-    background-color: white !important; /* Graph background remains white */
+/* === Heading Styles === */
+h1, h3 {
+    color: white;
+    text-align: center;
 }
 
-/* ✅ 5. Moving Plane Animation */
-.plane {
-    position: fixed;
-    top: 30%; /* Adjust height */
-    left: -200px; /* Start off-screen */
-    width: 150px;
-    height: auto;
-    animation: movePlane 10s linear infinite; /* Moves across screen */
+p {
+    color: white;
+    text-align: center;
 }
 
-@keyframes movePlane {
-    0% { left: -200px; }  /* Start off-screen */
-    100% { left: 100%; }   /* Move fully across */
-}
-
-/* ✅ 6. FAQ Section Styling */
-details {
-    background: #f9f9f9;
-    border-left: 5px solid blue;
-    padding: 10px;
-    margin: 10px 0;
-}
-
-summary {
-    font-weight: bold;
-    cursor: pointer;
-}
-
-/* ✅ 7. Responsive Design (For Mobile Devices) */
-@media screen and (max-width: 768px) {
-    .container {
-        width: 90%;
-    }
-
-    .plane {
-        width: 100px;  /* Make the plane smaller on mobile */
-    }
-
-    .navbar {
-        font-size: 14px;
-    }
+/* === Graph Styling === */
+.graph-container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
 }
